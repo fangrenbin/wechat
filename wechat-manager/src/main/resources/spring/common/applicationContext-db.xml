@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Database: klxdb-->
+    <!--Username: klxuser-->
+    <!--Allowed IPs: %-->
+    <!--Port:3306-->
+    <!--Host:db4free.net-->
+    <!--Collation: utf8_general_ci-->
+    <!--Email: fangrenbin@gmail.com-->
+
+    <!-- data source -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://db4free.net:3306/klxdb?characterEncoding=UTF8"/>
+        <property name="user" value="klxuser"/>
+        <property name="password" value="klxpassword"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>
