@@ -10,19 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-@Controller
-@RequestMapping(value = "/wechat")
+@Controller()
+//@RequestMapping(value = "/wechat")
 public class WechatController {
     private static final String TOKEN = "klxenglish";
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    @ResponseBody
-    public String test(HttpServletRequest request) {
-        if (checkSignature(request)) {
-            return "true";
-        }
+//    @RequestMapping(value = "/weixin", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String test(HttpServletRequest request) {
+//        if (checkSignature(request)) {
+//            return "true";
+//        }
+//
+//        return "false";
+//    }
 
-        return "false";
+    //微信公众平台验证url是否有效使用的接口
+    @RequestMapping(value="/weixin", method = RequestMethod.GET)
+    @ResponseBody
+    public String initWeixinURL(HttpServletRequest request){
+        String echostr = request.getParameter("echostr");
+        if (checkSignature(request) && echostr != null) {
+            return echostr;
+        }else{
+            return "error";
+        }
     }
 
     /**
