@@ -90,7 +90,7 @@ public class WechatController {
             return "error";
         }
 
-        String replyContent = "xxxxxxxxx";
+        String replyContent = "感谢您关注\n快乐学ENGLISH\n号码现在还处于开发状态\n敬请期待";
 
         String replayMessage = wechatTemplate.getString("TextMessage")
                 .replace("${ToUserName}", "<![CDATA[" + textMessage.getFromUserName() + "]]>")
