@@ -19,7 +19,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.Date;
 
-@Controller()
+@Controller
 public class WechatController {
     private static final String TOKEN = "klxenglish";
 
@@ -75,7 +75,7 @@ public class WechatController {
         String replayMessage = wechatTemplate.getString("TextMessage")
                 .replace("${ToUserName}", xmlreader.getString("FromUserName"))
                 .replace("${FromUserName}", xmlreader.getString("ToUserName"))
-                .replace("${CreateTime}", String.valueOf(new Date().toString()))
+                .replace("${CreateTime}", String.valueOf(new Date().getTime()))
                 .replace("${Content}", replyContent);
 
         return replayMessage;

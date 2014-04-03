@@ -1,39 +1,29 @@
 package name.frb.wechat.controller;
 
-import name.frb.wechat.model.wechat.TextMessage;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.XMLConfiguration;
+import name.frb.configuration.xmlconfiguration.XmlConfiguration;
+import name.frb.wechat.AbstractTestng;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.Date;
 
-public class UserControllerTest {
-    public static void main(String[] args) throws FileNotFoundException, ConfigurationException {
-        InputStream is = new FileInputStream(new File("/Users/renbinfang/Desktop/weixinTextMsg.xml"));
+public class UserControllerTest extends AbstractTestng {
+    @Autowired
+    private XmlConfiguration wechatTemplate;
 
-        XMLConfiguration xmlreader = new XMLConfiguration();
-        xmlreader.load(is);
+    @Test
+    public void readWechatTeplateTest() {
+        String replayMessage = wechatTemplate.getString("TextMessage")
+                .replace("${ToUserName}", "o8vWct1kjxAViVf2u_BZHuR4bbeU")
+                .replace("${FromUserName}", "gh_583174c5755e")
+                .replace("${CreateTime}", String.valueOf(new Date().getTime()))
+                .replace("${Content}", "感谢关注“快乐学ENGLISH”微信号，本号码正在开发当中，希望您耐心等待！");
 
-        //接收TEXT消息
-        TextMessage textMessage = new TextMessage();
-        textMessage.setToUserName(xmlreader.getString("ToUserName"));
-        textMessage.setFromUserName(xmlreader.getString("FromUserName"));
-        textMessage.setCreateTime(xmlreader.getString("CreateTime"));
-        textMessage.setMsgType(xmlreader.getString("MsgType"));
-        textMessage.setContent(xmlreader.getString("Content"));
-        textMessage.setMsgId(xmlreader.getString("MsgId"));
-
-        System.out.println(textMessage.toString());
+        System.out.println(replayMessage);
     }
 
-//    public static void main(String[] args) {
-//        UserControllerTest test = new UserControllerTest();
-//        System.out.println(sha1("abc"));
-//    }
 
     public static String sha1(String key) {
         try {
