@@ -35,16 +35,16 @@ public class WechatController {
      * @param request
      * @return
      */
-//    @RequestMapping(value = "/weixin", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String initWeixinURL(HttpServletRequest request) {
-//        String echostr = request.getParameter("echostr");
-//        if (checkSignature(request) && echostr != null) {
-//            return echostr;
-//        } else {
-//            return "error";
-//        }
-//    }
+    @RequestMapping(value = "/weixin", method = RequestMethod.GET)
+    @ResponseBody
+    public String initWeixinURL(HttpServletRequest request) {
+        String echostr = request.getParameter("echostr");
+        if (checkSignature(request) && echostr != null) {
+            return echostr;
+        } else {
+            return "error";
+        }
+    }
 
     @RequestMapping(value = "/weixin", method = RequestMethod.POST)
     @ResponseBody
@@ -54,7 +54,7 @@ public class WechatController {
         String nonce = request.getParameter("nonce");
 
         if (StringUtils.isEmpty(wechatSignature) || StringUtils.isEmpty(timestamp) || StringUtils.isEmpty(nonce)) {
-            return "sth. is empty. wechatSignature="+wechatSignature + "timestamp="+timestamp + "nonce" + nonce;
+            return "sth. is empty. wechatSignature=" + wechatSignature + "timestamp=" + timestamp + "nonce" + nonce;
         }
 
         String[] stringArray = new String[]{TOKEN, timestamp, nonce};
