@@ -75,4 +75,17 @@ public class TextMessage {
     public void setMsgId(String msgId) {
         this.msgId = msgId;
     }
+
+    @Override
+    public String toString() {
+        return "TextMessage{" +
+                "id=" + id +
+                ", toUserName='" + toUserName + '\'' +
+                ", fromUserName='" + fromUserName + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", msgType='" + msgType + '\'' +
+                ", content='" + content + '\'' +
+                ", msgId='" + msgId + '\'' +
+                '}';
+    }
 }

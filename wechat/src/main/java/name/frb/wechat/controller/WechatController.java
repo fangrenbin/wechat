@@ -53,12 +53,12 @@ public class WechatController {
 
         //接收TEXT消息
         TextMessage textMessage = new TextMessage();
-        textMessage.setToUserName(xmlreader.getString("xml.ToUserName"));
-        textMessage.setFromUserName(xmlreader.getString("xml.FromUserName"));
-        textMessage.setCreateTime(xmlreader.getString("xml.CreateTime"));
-        textMessage.setMsgType(xmlreader.getString("xml.MsgType"));
-        textMessage.setContent(xmlreader.getString("xml.Content"));
-        textMessage.setMsgId(xmlreader.getString("xml.MsgId"));
+        textMessage.setToUserName(xmlreader.getString("ToUserName"));
+        textMessage.setFromUserName(xmlreader.getString("FromUserName"));
+        textMessage.setCreateTime(xmlreader.getString("CreateTime"));
+        textMessage.setMsgType(xmlreader.getString("MsgType"));
+        textMessage.setContent(xmlreader.getString("Content"));
+        textMessage.setMsgId(xmlreader.getString("MsgId"));
 
         boolean success = messageService.addMessage(textMessage);
         if (!success) {
