@@ -5,4 +5,8 @@
     <bean id="userController" class="name.frb.wechat.controller.UserController">
         <property name="userService" ref="userService"/>
     </bean>
+
+    <bean id="messageController" class="name.frb.wechat.controller.MsgController">
+        <property name="messageService" ref="messageService"/>
+    </bean>
 </beans>

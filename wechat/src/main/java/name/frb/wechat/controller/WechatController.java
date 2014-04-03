@@ -1,40 +1,71 @@
 package name.frb.wechat.controller;
 
+import name.frb.wechat.model.wechat.TextMessage;
+import name.frb.wechat.service.MessageService;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
 @Controller()
-//@RequestMapping(value = "/wechat")
 public class WechatController {
     private static final String TOKEN = "klxenglish";
 
-//    @RequestMapping(value = "/weixin", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String test(HttpServletRequest request) {
-//        if (checkSignature(request)) {
-//            return "true";
-//        }
-//
-//        return "false";
-//    }
+    @Resource(name = "messageService")
+    private MessageService messageService;
 
-    //微信公众平台验证url是否有效使用的接口
-    @RequestMapping(value="/weixin", method = RequestMethod.GET)
+    /**
+     * 验证微信公众平台接口
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/weixin", method = RequestMethod.GET)
     @ResponseBody
-    public String initWeixinURL(HttpServletRequest request){
+    public String initWeixinURL(HttpServletRequest request) {
         String echostr = request.getParameter("echostr");
         if (checkSignature(request) && echostr != null) {
             return echostr;
-        }else{
+        } else {
             return "error";
         }
+    }
+
+    @RequestMapping(value = "/weixin", method = RequestMethod.POST)
+    public String replyMessage(HttpServletRequest request) throws IOException, ConfigurationException {
+        if (!checkSignature(request)) {
+            return "error";
+        }
+
+        InputStream is = request.getInputStream();
+        XMLConfiguration xmlreader = new XMLConfiguration();
+        xmlreader.load(is);
+
+        //接收TEXT消息
+        TextMessage textMessage = new TextMessage();
+        textMessage.setToUserName(xmlreader.getString("xml.ToUserName"));
+        textMessage.setFromUserName(xmlreader.getString("xml.FromUserName"));
+        textMessage.setCreateTime(xmlreader.getString("xml.CreateTime"));
+        textMessage.setMsgType(xmlreader.getString("xml.MsgType"));
+        textMessage.setContent(xmlreader.getString("xml.Content"));
+        textMessage.setMsgId(xmlreader.getString("xml.MsgId"));
+
+        boolean success = messageService.addMessage(textMessage);
+        if (!success) {
+            return "error";
+        }
+
+        return "thank you";
     }
 
     /**
@@ -78,5 +109,9 @@ public class WechatController {
             e.printStackTrace();
             return key;
         }
+    }
+
+    public void setMessageService(MessageService messageService) {
+        this.messageService = messageService;
     }
 }
