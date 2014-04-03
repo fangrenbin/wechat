@@ -1,8 +1,13 @@
-
-<xml>
-    <ToUserName>{ToUserName}</ToUserName>
-    <FromUserName>{FromUserName}</FromUserName>
-    <CreateTime>{CreateTime}</CreateTime>
-    <MsgType>${MsgType}</MsgType>
-    <Content>{Content}</Content>
-</xml>
+<Root>
+    <TextMessage>
+        <![CDATA[
+            <xml>
+                <ToUserName>${ToUserName}</ToUserName>
+                <FromUserName>${FromUserName}</FromUserName>
+                <CreateTime>${CreateTime}</CreateTime>
+                <MsgType>${MsgType}</MsgType>
+                <Content>${Content}</Content>
+            </xml>
+        ]]>
+    </TextMessage>
+</Root>
