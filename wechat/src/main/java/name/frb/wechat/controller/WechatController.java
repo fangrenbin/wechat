@@ -49,25 +49,7 @@ public class WechatController {
     @RequestMapping(value = "/weixin", method = RequestMethod.POST)
     @ResponseBody
     public String replyMessage(HttpServletRequest request) throws IOException, ConfigurationException {
-        String wechatSignature = request.getParameter("signature");
-        String timestamp = request.getParameter("timestamp");
-        String nonce = request.getParameter("nonce");
-
-        if (StringUtils.isEmpty(wechatSignature) || StringUtils.isEmpty(timestamp) || StringUtils.isEmpty(nonce)) {
-            System.err.println("sth. is empty. wechatSignature=" + wechatSignature + "timestamp=" + timestamp + "nonce" + nonce);
-
-            return "error";
-        }
-
-        String[] stringArray = new String[]{TOKEN, timestamp, nonce};
-        java.util.Arrays.sort(stringArray);
-        String signature = "";
-        for (String string : stringArray) {
-            signature = signature + string;
-        }
-
         if (!checkSignature(request)) {
-            System.err.println("singnatrue error, signature=" + signature + "wechatSignature=" + wechatSignature);
             return "error";
         }
 
