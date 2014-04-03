@@ -5,7 +5,7 @@
                 <ToUserName>${ToUserName}</ToUserName>
                 <FromUserName>${FromUserName}</FromUserName>
                 <CreateTime>${CreateTime}</CreateTime>
-                <MsgType>text</MsgType>
+                <MsgType>${MsgType}</MsgType>
                 <Content>${Content}</Content>
             </xml>
         ]]>

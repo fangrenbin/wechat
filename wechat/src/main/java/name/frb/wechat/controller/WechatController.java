@@ -73,10 +73,11 @@ public class WechatController {
         String replyContent = "感谢关注快乐学ENGLISH微信号，本号码正在开发当中，希望您耐心等待！";
 
         String replayMessage = wechatTemplate.getString("TextMessage")
-                .replace("${ToUserName}", xmlreader.getString("FromUserName"))
-                .replace("${FromUserName}", xmlreader.getString("ToUserName"))
+                .replace("${ToUserName}", "<![CDATA[" + xmlreader.getString("FromUserName") + "]]>")
+                .replace("${FromUserName}", "<![CDATA[" + xmlreader.getString("ToUserName") + "]]>")
                 .replace("${CreateTime}", String.valueOf(new Date().getTime()))
-                .replace("${Content}", replyContent);
+                .replace("${MsgType}", "<![CDATA[" + "text" + "]]>")
+                .replace("${Content}", "<![CDATA[" + replyContent + "]]>");
 
         return replayMessage;
     }
