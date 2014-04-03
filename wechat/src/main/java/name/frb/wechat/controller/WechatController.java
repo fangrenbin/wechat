@@ -35,22 +35,22 @@ public class WechatController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/weixin", method = RequestMethod.GET)
-    @ResponseBody
-    public String initWeixinURL(HttpServletRequest request) {
-        String echostr = request.getParameter("echostr");
-        if (checkSignature(request) && echostr != null) {
-            return echostr;
-        } else {
-            return "error";
-        }
-    }
+//    @RequestMapping(value = "/weixin", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String initWeixinURL(HttpServletRequest request) {
+//        String echostr = request.getParameter("echostr");
+//        if (checkSignature(request) && echostr != null) {
+//            return echostr;
+//        } else {
+//            return "error";
+//        }
+//    }
 
     @RequestMapping(value = "/weixin", method = RequestMethod.POST)
     @ResponseBody
     public String replyMessage(HttpServletRequest request) throws IOException, ConfigurationException {
         if (!checkSignature(request)) {
-            return "error";
+            return "singnatrue error";
         }
 
         InputStream is = request.getInputStream();
@@ -68,7 +68,7 @@ public class WechatController {
 
         boolean success = messageService.addMessage(textMessage);
         if (!success) {
-            return "error";
+            return "failed to save text message";
         }
 
         String replyContent = "感谢关注快乐学ENGLISH微信号，本号码正在开发当中，希望您耐心等待！";
