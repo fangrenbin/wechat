@@ -54,7 +54,8 @@ public class WechatController {
         String nonce = request.getParameter("nonce");
 
         if (StringUtils.isEmpty(wechatSignature) || StringUtils.isEmpty(timestamp) || StringUtils.isEmpty(nonce)) {
-            return "sth. is empty. wechatSignature=" + wechatSignature + "timestamp=" + timestamp + "nonce" + nonce;
+            System.err.println("sth. is empty. wechatSignature=" + wechatSignature + "timestamp=" + timestamp + "nonce" + nonce);
+            return "error";
         }
 
         String[] stringArray = new String[]{TOKEN, timestamp, nonce};
@@ -65,7 +66,8 @@ public class WechatController {
         }
 
         if (!checkSignature(request)) {
-            return "singnatrue error, signature=" + signature + "wechatSignature=" + wechatSignature;
+            System.err.println("singnatrue error, signature=" + signature + "wechatSignature=" + wechatSignature);
+            return "error";
         }
 
         InputStream is = request.getInputStream();
@@ -83,7 +85,8 @@ public class WechatController {
 
         boolean success = messageService.addMessage(textMessage);
         if (!success) {
-            return "failed to save text message";
+            System.err.println("failed to save text message");
+            return "error";
         }
 
         String replyContent = "感谢关注快乐学ENGLISH微信号，本号码正在开发当中，希望您耐心等待！";
@@ -94,6 +97,8 @@ public class WechatController {
                 .replace("${CreateTime}", String.valueOf(new Date().getTime()))
                 .replace("${MsgType}", "<![CDATA[" + "text" + "]]>")
                 .replace("${Content}", "<![CDATA[" + replyContent + "]]>");
+
+        System.out.println("replayMessage"+replayMessage);
 
         return replayMessage;
     }
