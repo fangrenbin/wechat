@@ -70,7 +70,7 @@ public class WechatController {
             return "error";
         }
 
-        String replyContent = "感谢关注“快乐学ENGLISH”微信号，本号码正在开发当中，希望您耐心等待！";
+        String replyContent = "感谢关注快乐学ENGLISH微信号，本号码正在开发当中，希望您耐心等待！";
 
         String replayMessage = wechatTemplate.getString("TextMessage")
                 .replace("${ToUserName}", xmlreader.getString("FromUserName"))
