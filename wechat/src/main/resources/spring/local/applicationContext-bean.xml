@@ -3,18 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--<bean id="userController" class="name.frb.wechat.controller.UserController">-->
-        <!--<property name="userService" ref="userService"/>-->
-    <!--</bean>-->
+    <bean id="userController" class="name.frb.wechat.controller.UserController">
+        <property name="userService" ref="userService"/>
+    </bean>
 
-    <!--<bean id="messageController" class="name.frb.wechat.controller.MsgController">-->
-        <!--<property name="messageService" ref="messageService"/>-->
-    <!--</bean>-->
+    <bean id="messageController" class="name.frb.wechat.controller.MsgController">
+        <property name="messageService" ref="messageService"/>
+    </bean>
 
-    <!--<bean id="wechatController" class="name.frb.wechat.controller.WechatController">-->
-        <!--<property name="messageService" ref="messageService"/>-->
-        <!--<property name="wechatTemplate" ref="wechatTemplate"/>-->
-    <!--</bean>-->
+    <bean id="wechatController" class="name.frb.wechat.controller.WechatController">
+        <property name="messageService" ref="messageService"/>
+        <property name="wechatTemplate" ref="wechatTemplate"/>
+    </bean>
 
     <bean id="resourcesLoader" class="name.frb.configuration.resourceloader.RescourceLoader"/>
     <bean id="wechatTemplate" class="name.frb.configuration.xmlconfiguration.XmlConfiguration" init-method="init">

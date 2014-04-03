@@ -19,7 +19,7 @@ public class UserControllerTest extends AbstractTestng {
                 .replace("${ToUserName}", "o8vWct1kjxAViVf2u_BZHuR4bbeU")
                 .replace("${FromUserName}", "gh_583174c5755e")
                 .replace("${CreateTime}", String.valueOf(new Date().getTime()))
-                .replace("${Content}", "感谢关注\\“快乐学ENGLISH\\”微信号，本号码正在开发当中，希望您耐心等待！");
+                .replace("${Content}", "感谢关注 快乐学ENGLISH 微信号，本号码正在开发当中，希望您耐心等待！");
 
         System.out.println(replayMessage);
     }
