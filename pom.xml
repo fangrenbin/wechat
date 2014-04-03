@@ -22,7 +22,24 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>name.frb.framework</groupId>
+            <artifactId>framework-configuration</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>framework-mvn-repo</id>
+            <url>https://raw.github.com/fangrenbin/framework/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <modules>
         <module>wechat</module>
         <module>wechat-manager</module>

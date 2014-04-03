@@ -1,5 +1,6 @@
 package name.frb.wechat.controller;
 
+import name.frb.configuration.xmlconfiguration.XmlConfiguration;
 import name.frb.wechat.model.wechat.TextMessage;
 import name.frb.wechat.service.MessageService;
 import org.apache.commons.configuration.ConfigurationException;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.Date;
 
 @Controller()
 public class WechatController {
@@ -23,6 +25,9 @@ public class WechatController {
 
     @Resource(name = "messageService")
     private MessageService messageService;
+
+    @Resource(name = "wechatTemplate")
+    private XmlConfiguration wechatTemplate;
 
     /**
      * 验证微信公众平台接口
@@ -65,7 +70,15 @@ public class WechatController {
             return "error";
         }
 
-        return "thank you";
+        String replyContent = "感谢关注“快乐学ENGLISH”微信号，本号码正在开发当中，希望您耐心等待！";
+
+        String replayMessage = wechatTemplate.getString("TextMessage")
+                .replace("${ToUserName}", xmlreader.getString("FromUserName"))
+                .replace("${FromUserName}", xmlreader.getString("ToUserName"))
+                .replace("${CreateTime}", String.valueOf(new Date().toString()))
+                .replace("${Content}", replyContent);
+
+        return replayMessage;
     }
 
     /**
@@ -113,5 +126,9 @@ public class WechatController {
 
     public void setMessageService(MessageService messageService) {
         this.messageService = messageService;
+    }
+
+    public void setWechatTemplate(XmlConfiguration wechatTemplate) {
+        this.wechatTemplate = wechatTemplate;
     }
 }
