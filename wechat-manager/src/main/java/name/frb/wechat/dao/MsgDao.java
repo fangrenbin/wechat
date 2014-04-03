@@ -12,7 +12,6 @@ public class MsgDao {
     private JdbcTemplate jdbcTemplate;
 
     /**
-     *
      * @return
      */
     public List<TextMessage> retrieveTextMessage() {
@@ -37,7 +36,6 @@ public class MsgDao {
     }
 
     /**
-     *
      * @param textMessage
      * @return
      */
@@ -45,6 +43,17 @@ public class MsgDao {
         String sql = "INSERT INTO text_message(toUserName, fromUserName, createTime, msgType, content, msgId) VALUES(?, ?, ?, ?, ?, ?)";
         int temp = jdbcTemplate.update(sql, new Object[]{textMessage.getToUserName(), textMessage.getFromUserName(), textMessage.getCreateTime(), textMessage.getMsgType(), textMessage.getContent(), textMessage.getMsgId()});
         return temp == 1;
+    }
+
+    /**
+     * @param msgId
+     * @return
+     */
+    public boolean doesTextMessageExist(String msgId) {
+        String sql = "SELECT COUNT(id) FROM text_message WHERE msgId = ?";
+        int temp = jdbcTemplate.queryForInt(sql, new Object[]{msgId});
+
+        return temp > 0;
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {

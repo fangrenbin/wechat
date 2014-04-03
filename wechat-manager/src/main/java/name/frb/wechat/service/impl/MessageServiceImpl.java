@@ -16,6 +16,12 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public boolean addMessage(TextMessage textMessage) {
+        String msgId = textMessage.getMsgId();
+        boolean exist = msgDao.doesTextMessageExist(msgId);
+        if (exist) {
+            return true;
+        }
+
         return msgDao.addTextMessage(textMessage);
     }
 
