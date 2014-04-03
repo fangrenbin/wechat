@@ -55,6 +55,7 @@ public class WechatController {
 
         if (StringUtils.isEmpty(wechatSignature) || StringUtils.isEmpty(timestamp) || StringUtils.isEmpty(nonce)) {
             System.err.println("sth. is empty. wechatSignature=" + wechatSignature + "timestamp=" + timestamp + "nonce" + nonce);
+
             return "error";
         }
 
