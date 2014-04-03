@@ -47,6 +47,7 @@ public class WechatController {
     }
 
     @RequestMapping(value = "/weixin", method = RequestMethod.POST)
+    @ResponseBody
     public String replyMessage(HttpServletRequest request) throws IOException, ConfigurationException {
         if (!checkSignature(request)) {
             return "error";
@@ -73,8 +74,8 @@ public class WechatController {
         String replyContent = "感谢关注快乐学ENGLISH微信号，本号码正在开发当中，希望您耐心等待！";
 
         String replayMessage = wechatTemplate.getString("TextMessage")
-                .replace("${ToUserName}", "<![CDATA[" + xmlreader.getString("FromUserName") + "]]>")
-                .replace("${FromUserName}", "<![CDATA[" + xmlreader.getString("ToUserName") + "]]>")
+                .replace("${ToUserName}", "<![CDATA[" + textMessage.getFromUserName() + "]]>")
+                .replace("${FromUserName}", "<![CDATA[" + textMessage.getToUserName() + "]]>")
                 .replace("${CreateTime}", String.valueOf(new Date().getTime()))
                 .replace("${MsgType}", "<![CDATA[" + "text" + "]]>")
                 .replace("${Content}", "<![CDATA[" + replyContent + "]]>");
