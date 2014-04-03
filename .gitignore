@@ -23,6 +23,7 @@ target/
 .idea
 *.orig
 
+*.log
 out
 test-output
 atlassian-ide-plugin.xml

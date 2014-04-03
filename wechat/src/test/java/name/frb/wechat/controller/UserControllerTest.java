@@ -10,10 +10,10 @@ import java.security.MessageDigest;
 import java.util.Date;
 
 public class UserControllerTest extends AbstractTestng {
-    @Autowired
+//    @Autowired
     private XmlConfiguration wechatTemplate;
 
-    @Test
+//    @Test
     public void readWechatTeplateTest() {
 //        String replayMessage = wechatTemplate.getString("TextMessage")
 //                .replace("${ToUserName}", "o8vWct1kjxAViVf2u_BZHuR4bbeU")
