@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+    <!--<Database>-->
+        <!--<DirverClass>com.mysql.jdbc.Driver</DirverClass>-->
+        <!--<JdbcUrl>jdbc:mysql://db4free.net:3306/klxdb?characterEncoding=UTF8</JdbcUrl>-->
+        <!--<User>klxuser</User>-->
+        <!--<Password>klxpassword</Password>-->
+    <!--</Database>-->
+</Root>

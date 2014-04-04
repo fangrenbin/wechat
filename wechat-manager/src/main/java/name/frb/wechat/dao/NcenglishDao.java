@@ -1,6 +1,6 @@
 package name.frb.wechat.dao;
 
-import name.frb.wechat.model.Ncenglish;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -12,9 +12,20 @@ public class NcenglishDao {
     private JdbcTemplate jdbcTemplate;
 
     public String retrieveNcenglishContent(String querykey) {
-        String sql = " SELECT content FROM ncenglish WHERE querykey = ?";
+        String sql = "SELECT content FROM ncenglish WHERE querykey = ?";
 
-        return jdbcTemplate.queryForObject(sql, new Object[]{querykey}, String.class);
+        List<String> contentList = jdbcTemplate.query(sql, new Object[]{querykey}, new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getString("content");
+            }
+        });
+
+        if (CollectionUtils.isNotEmpty(contentList) && contentList.size() > 0) {
+            return contentList.get(0);
+        }
+
+        return null;
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {

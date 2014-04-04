@@ -11,9 +11,25 @@
     <name>wechat-parent</name>
     <url>http://maven.apache.org</url>
 
+    <modules>
+        <module>wechat</module>
+        <module>wechat-manager</module>
+    </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>framework-mvn-repo</id>
+            <url>https://raw.github.com/fangrenbin/framework/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -33,19 +49,20 @@
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>framework-mvn-repo</id>
-            <url>https://raw.github.com/fangrenbin/framework/mvn-repo/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
 
-    <modules>
-        <module>wechat</module>
-        <module>wechat-manager</module>
-    </modules>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+    </build>
 </project>

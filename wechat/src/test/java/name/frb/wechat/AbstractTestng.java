@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
  * @author : renbin.fang
  * @date : Jan 23, 2014
  */
-@ContextConfiguration(locations = { "classpath*:spring/common/applicationContext-*.xml", "classpath:spring/local/applicationContext-*.xml" })
+@ContextConfiguration(locations = { "classpath:spring/common/applicationContext-*.xml", "classpath:spring/local/applicationContext-*.xml" })
 public abstract class AbstractTestng extends AbstractTestNGSpringContextTests {
     /**
      * LOGGER

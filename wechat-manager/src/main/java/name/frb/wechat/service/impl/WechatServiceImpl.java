@@ -47,6 +47,7 @@ public class WechatServiceImpl implements WechatService {
 
             // 2nd. retrieve content of reply message
             String querykey = xmlReader.getString("Content");
+
             String replyContent = ncenglishDao.retrieveNcenglishContent(querykey);
             if (StringUtils.isEmpty(replyContent)) {
                 replyContent = wechatTemplate.getString("UnknowMessage");

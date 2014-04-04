@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!--Database: klxdb-->
     <!--Username: klxuser-->
@@ -13,10 +13,10 @@
 
     <!-- data source -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://db4free.net:3306/klxdb?characterEncoding=UTF8"/>
-        <property name="user" value="klxuser"/>
-        <property name="password" value="klxpassword"/>
+        <property name="driverClass" value="${Database.DirverClass}"/>
+        <property name="jdbcUrl" value="${Database.JdbcUrl}"/>
+        <property name="user" value="${Database.User}"/>
+        <property name="password" value="${Database.Password}"/>
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
