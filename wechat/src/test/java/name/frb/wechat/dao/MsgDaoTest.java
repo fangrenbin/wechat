@@ -10,7 +10,7 @@ public class MsgDaoTest extends AbstractTestng {
     @Autowired
     private NcenglishDao ncenglishDao;
 
-    @Test
+//    @Test
     public void retrieveContentTest() {
         String querykey = "0103";
         String actual = ncenglishDao.retrieveNcenglishContent(querykey);
