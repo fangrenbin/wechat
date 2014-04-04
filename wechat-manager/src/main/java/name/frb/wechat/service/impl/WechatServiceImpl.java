@@ -71,7 +71,7 @@ public class WechatServiceImpl implements WechatService {
             replyContent = ncenglishDao.retrieveNcenglishContent(key);
 
             if (StringUtils.isEmpty(replyContent)) {
-                replyContent = xmlReader.getString("NoContent");
+                replyContent = wechatTemplate.getString("NoContent");
             }
 
         } else {
