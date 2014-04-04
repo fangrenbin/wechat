@@ -1,4 +1,13 @@
 <Root>
+    <ReplyMessage>
+        感谢您关注\n
+        快乐学ENGLISH\n
+        号码现在还处于开发状态\n
+        敬请期待! :)
+    </ReplyMessage>
+    <UnknowMessage>
+        不清楚你说的是什么啊，给正确指令。
+    </UnknowMessage>
     <TextMessage>
         <![CDATA[
             <xml>
@@ -10,4 +19,87 @@
             </xml>
         ]]>
     </TextMessage>
+    <ImageMessage>
+        <![CDATA[
+            <xml>
+                <ToUserName>${ToUserName}</ToUserName>
+                <FromUserName>${FromUserName}</FromUserName>
+                <CreateTime>${CreateTime}</CreateTime>
+                <MsgType>${MsgType}</MsgType>
+                <Image>
+                    <MediaId>${MediaId}</MediaId>
+                </Image>
+            </xml>
+        ]]>
+    </ImageMessage>
+    <VoiceMessage>
+        <![CDATA[
+            <xml>
+                <ToUserName>toUser</ToUserName>
+                <FromUserName>fromUser</FromUserName>
+                <CreateTime>12345678</CreateTime>
+                <MsgType>voice</MsgType>
+                <Voice>
+                    <MediaId>media_id</MediaId>
+                </Voice>
+            </xml>
+        ]]>
+    </VoiceMessage>
+    <VideoMessage>
+        <![CDATA[
+            <xml>
+                <ToUserName>toUser</ToUserName>
+                <FromUserName>fromUser</FromUserName>
+                <CreateTime>12345678</CreateTime>
+                <MsgType>video]]</MsgType>
+                <Video>
+                    <MediaId>media_id</MediaId>
+                    <Title>title</Title>
+                    <Description>description</Description>
+                </Video>
+            </xml>
+        ]]>
+    </VideoMessage>
+    <MusicMessage>
+        <![CDATA[
+            <xml>
+                <ToUserName>toUser</ToUserName>
+                <FromUserName>fromUser</FromUserName>
+                <CreateTime>12345678</CreateTime>
+                <MsgType>music</MsgType>
+                <Music>
+                    <Title>TITLE</Title>
+                    <Description>DESCRIPTION</Description>
+                    <MusicUrl>MUSIC_Url</MusicUrl>
+                    <HQMusicUrl>HQ_MUSIC_Url</HQMusicUrl>
+                    <ThumbMediaId>media_id</ThumbMediaId>
+                </Music>
+            </xml>
+        ]]>
+    </MusicMessage>
+    <NewsMessage>
+        <![CDATA[
+            <xml>
+                <ToUserName>toUser</ToUserName>
+                <FromUserName>fromUser</FromUserName>
+                <CreateTime>12345678</CreateTime>
+                <MsgType>news</MsgType>
+                <ArticleCount>2</ArticleCount>
+                <Articles>
+                    <item>
+                        <Title>title1</Title>
+                        <Description>description1</Description>
+                        <PicUrl>picurl</PicUrl>
+                        <Url>url</Url>
+                    </item>
+                    <item>
+                        <Title>title</Title>
+                        <Description>description</Description>
+                        <PicUrl>picurl</PicUrl>
+                        <Url>url</Url>
+                    </item>
+                </Articles>
+            </xml>
+        ]]>
+    </NewsMessage>
 </Root>

@@ -12,24 +12,16 @@
     </bean>
 
     <bean id="wechatController" class="name.frb.wechat.controller.WechatController">
-        <property name="messageService" ref="messageService"/>
-        <property name="wechatTemplate" ref="wechatTemplate"/>
+        <property name="wechatService" ref="wechatService"/>
     </bean>
 
-    <bean id="resourcesLoader" class="name.frb.configuration.resourceloader.RescourceLoader"/>
-    <bean id="wechatTemplate" class="name.frb.configuration.xmlconfiguration.XmlConfiguration" init-method="init">
-        <property name="rescourceLoader" ref="resourcesLoader"/>
-        <constructor-arg value="classpath:wechat/wechat-*.xml"/>
-    </bean>
 
-    <bean
-            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <!-- Spring MVC ResponseBody encoding converter -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
             <list>
-                <bean
-                        class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
-                <bean
-                        class="org.springframework.http.converter.StringHttpMessageConverter">
+                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                     <property name="supportedMediaTypes">
                         <list>
                             <bean class="org.springframework.http.MediaType">
@@ -40,10 +32,8 @@
                         </list>
                     </property>
                 </bean>
-                <bean
-                        class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
-                <bean
-                        class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"/>
             </list>
         </property>
     </bean>

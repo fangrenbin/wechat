@@ -16,4 +16,19 @@
     <bean id="messageService" class="name.frb.wechat.service.impl.MessageServiceImpl">
         <property name="msgDao" ref="msgDao"/>
     </bean>
+
+    <bean id="resourcesLoader" class="name.frb.configuration.resourceloader.RescourceLoader"/>
+    <bean id="wechatTemplate" class="name.frb.configuration.xmlconfiguration.XmlConfiguration" init-method="init">
+        <property name="rescourceLoader" ref="resourcesLoader"/>
+        <constructor-arg value="classpath:wechat/wechat-*.xml"/>
+    </bean>
+
+    <bean id="ncenglishDao" class="name.frb.wechat.dao.NcenglishDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="wechatService" class="name.frb.wechat.service.impl.WechatServiceImpl">
+        <property name="wechatTemplate" ref="wechatTemplate"/>
+        <property name="msgdao" ref="msgDao"/>
+        <property name="ncenglishDao" ref="ncenglishDao"/>
+    </bean>
 </beans>

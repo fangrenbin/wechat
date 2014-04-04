@@ -1,6 +1,6 @@
 package name.frb.wechat.bean;
 
-public enum MessageTypeEnum {
+public enum MessageType {
     /**
      * 文本消息
      */
@@ -45,7 +45,7 @@ public enum MessageTypeEnum {
      *
      * @param value
      */
-    private MessageTypeEnum(String value) {
+    private MessageType(String value) {
         this.value = value;
     }
 }

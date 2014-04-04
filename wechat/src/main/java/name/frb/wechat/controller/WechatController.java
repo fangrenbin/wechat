@@ -1,33 +1,23 @@
 package name.frb.wechat.controller;
 
-import name.frb.configuration.xmlconfiguration.XmlConfiguration;
-import name.frb.wechat.model.wechat.TextMessage;
-import name.frb.wechat.service.MessageService;
+import name.frb.wechat.service.WechatService;
 import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.util.Date;
 
 @Controller
 public class WechatController {
     private static final String TOKEN = "klxenglish";
 
-    @Resource(name = "messageService")
-    private MessageService messageService;
-
-    @Resource(name = "wechatTemplate")
-    private XmlConfiguration wechatTemplate;
+    private WechatService wechatService;
 
     /**
      * 验证微信公众平台接口
@@ -53,35 +43,8 @@ public class WechatController {
             return "error";
         }
 
-        InputStream is = request.getInputStream();
-        XMLConfiguration xmlreader = new XMLConfiguration();
-        xmlreader.load(is);
-
-        //接收TEXT消息
-        TextMessage textMessage = new TextMessage();
-        textMessage.setToUserName(xmlreader.getString("ToUserName"));
-        textMessage.setFromUserName(xmlreader.getString("FromUserName"));
-        textMessage.setCreateTime(xmlreader.getString("CreateTime"));
-        textMessage.setMsgType(xmlreader.getString("MsgType"));
-        textMessage.setContent(xmlreader.getString("Content"));
-        textMessage.setMsgId(xmlreader.getString("MsgId"));
-
-        boolean success = messageService.addMessage(textMessage);
-        if (!success) {
-            System.err.println("failed to save text message");
-            return "error";
-        }
-
-        String replyContent = "感谢您关注\n快乐学ENGLISH\n号码现在还处于开发状态\n敬请期待";
-
-        String replayMessage = wechatTemplate.getString("TextMessage")
-                .replace("${ToUserName}", "<![CDATA[" + textMessage.getFromUserName() + "]]>")
-                .replace("${FromUserName}", "<![CDATA[" + textMessage.getToUserName() + "]]>")
-                .replace("${CreateTime}", String.valueOf(new Date().getTime()))
-                .replace("${MsgType}", "<![CDATA[" + "text" + "]]>")
-                .replace("${Content}", "<![CDATA[" + replyContent + "]]>");
-
-        System.out.println("replayMessage"+replayMessage);
+        String replayMessage = wechatService.replyMessage(request.getInputStream());
+        System.out.println("replayMessage" + replayMessage);
 
         return replayMessage;
     }
@@ -129,11 +92,7 @@ public class WechatController {
         }
     }
 
-    public void setMessageService(MessageService messageService) {
-        this.messageService = messageService;
-    }
-
-    public void setWechatTemplate(XmlConfiguration wechatTemplate) {
-        this.wechatTemplate = wechatTemplate;
+    public void setWechatService(WechatService wechatService) {
+        this.wechatService = wechatService;
     }
 }
