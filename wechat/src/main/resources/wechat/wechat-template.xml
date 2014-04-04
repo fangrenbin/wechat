@@ -2,12 +2,20 @@
     <ReplyMessage>
         感谢您关注\n
         快乐学ENGLISH\n
-        号码现在还处于开发状态\n
-        敬请期待! :)
+        现在由“机器小宝”为您服务! :)\n
+        输入：help获取指令
     </ReplyMessage>
-    <UnknowMessage>
-        不清楚你说的是什么啊，给正确指令。
-    </UnknowMessage>
+    <UnKnowOrder>
+        机器人小宝宝不知道您说什么哦。
+    </UnKnowOrder>
+    <NoContent>
+        非常抱歉，您查询的内容小宝找不到，请给我言，我马上会补上。
+    </NoContent>
+    <HelpMessage>
+        查看新概念英语课文：\n
+        请输入：新概念＋册＋课\n
+        例：新概念310，查看第3册第10课的课文。
+    </HelpMessage>
     <TextMessage>
         <![CDATA[
             <xml>

@@ -16,6 +16,7 @@ import java.security.MessageDigest;
 
 @Controller
 public class WechatController {
+    /*  Wechat Token */
     private static final String TOKEN = "klxenglish";
 
     @Resource

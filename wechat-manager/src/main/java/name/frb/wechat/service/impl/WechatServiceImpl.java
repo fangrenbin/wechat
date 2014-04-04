@@ -29,43 +29,81 @@ public class WechatServiceImpl implements WechatService {
 
         String msgType = xmlReader.getString("MsgType");
         if (StringUtils.equals(msgType, MessageType.TEXT.getValue())) {
-            //接收TEXT消息
-            TextMessage textMessage = new TextMessage();
-            textMessage.setToUserName(xmlReader.getString("ToUserName"));
-            textMessage.setFromUserName(xmlReader.getString("FromUserName"));
-            textMessage.setCreateTime(xmlReader.getString("CreateTime"));
-            textMessage.setMsgType(xmlReader.getString("MsgType"));
-            textMessage.setContent(xmlReader.getString("Content"));
-            textMessage.setMsgId(xmlReader.getString("MsgId"));
-
-            //1st. save text message into database
-            boolean success = msgdao.addTextMessage(textMessage);
-            if (!success) {
-                System.err.println("failed to save text message");
-                return "error";
-            }
-
-            // 2nd. retrieve content of reply message
-            String querykey = xmlReader.getString("Content");
-
-            String replyContent = ncenglishDao.retrieveNcenglishContent(querykey);
-            if (StringUtils.isEmpty(replyContent)) {
-                replyContent = wechatTemplate.getString("UnknowMessage");
-            }
-
-            // 3nd. form reply message to xml type
-            String replayMessage = wechatTemplate.getString("TextMessage")
-                    .replace("${ToUserName}", "<![CDATA[" + textMessage.getFromUserName() + "]]>")
-                    .replace("${FromUserName}", "<![CDATA[" + textMessage.getToUserName() + "]]>")
-                    .replace("${CreateTime}", String.valueOf(new Date().getTime()))
-                    .replace("${MsgType}", "<![CDATA[" + MessageType.TEXT.getValue() + "]]>")
-                    .replace("${Content}", "<![CDATA[" + replyContent + "]]>");
-
-            //4th. return reply message
-            return replayMessage;
+            return dealWithTextMessage(xmlReader);
         }
 
         return "";
+    }
+
+    /**
+     * 处理查看指令，并返回XML模式数据
+     *
+     * @param xmlReader
+     * @return
+     */
+    private String dealWithTextMessage(XMLConfiguration xmlReader) {
+        String replyMessage = "";
+        //接收TEXT消息
+        TextMessage textMessage = new TextMessage();
+        textMessage.setToUserName(xmlReader.getString("ToUserName"));
+        textMessage.setFromUserName(xmlReader.getString("FromUserName"));
+        textMessage.setCreateTime(xmlReader.getString("CreateTime"));
+        textMessage.setMsgType(xmlReader.getString("MsgType"));
+        textMessage.setContent(xmlReader.getString("Content"));
+        textMessage.setMsgId(xmlReader.getString("MsgId"));
+
+        // 保存消息到数据库
+        boolean success = msgdao.addTextMessage(textMessage);
+        if (!success) {
+            System.err.println("Failed to save text message");
+            return "error";
+        }
+
+        // 处理查看新概念请求
+        String querykey = xmlReader.getString("Content");
+        String replyContent = "";
+
+        if (doesNeedHelp(querykey)) {
+            replyContent = wechatTemplate.getString("HelpMessage");
+
+        } else if (StringUtils.startsWith(querykey, "新概念")) {
+            String key = querykey.replace("新概念", "");
+            replyContent = ncenglishDao.retrieveNcenglishContent(key);
+
+            if (StringUtils.isEmpty(replyContent)) {
+                replyContent = xmlReader.getString("NoContent");
+            }
+
+        } else {
+            replyContent = wechatTemplate.getString("UnKnowOrder");
+        }
+
+        // 3nd. form reply message to xml type
+        replyMessage = wechatTemplate.getString("TextMessage")
+                .replace("${ToUserName}", "<![CDATA[" + textMessage.getFromUserName() + "]]>")
+                .replace("${FromUserName}", "<![CDATA[" + textMessage.getToUserName() + "]]>")
+                .replace("${CreateTime}", String.valueOf(new Date().getTime()))
+                .replace("${MsgType}", "<![CDATA[" + MessageType.TEXT.getValue() + "]]>")
+                .replace("${Content}", "<![CDATA[" + replyContent + "]]>");
+
+        return replyMessage;
+    }
+
+    /**
+     * whether needs help
+     *
+     * @param queryKey
+     * @return true or false
+     */
+    private boolean doesNeedHelp(String queryKey) {
+        String key = queryKey.replace(" ", "");
+        if (!key.matches("^[a-zA-Z]+")) {
+            return false;
+        }
+
+        key = key.toUpperCase();
+
+        return StringUtils.equals(key, "HELP");
     }
 
     public void setWechatTemplate(XmlConfiguration wechatTemplate) {
