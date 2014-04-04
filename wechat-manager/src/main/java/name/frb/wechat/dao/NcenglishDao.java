@@ -25,7 +25,7 @@ public class NcenglishDao {
             return contentList.get(0);
         }
 
-        return null;
+        return "";
     }
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
