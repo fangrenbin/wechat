@@ -21,6 +21,7 @@ public class WechatServiceImpl implements WechatService {
 
     private final static String MSG_START = "<![CDATA[";
     private final static String MSG_END = "]]>";
+    private final static String TAB = "  ";
 
     @Override
     public String replyMessage(InputStream inputStream) {
@@ -68,7 +69,7 @@ public class WechatServiceImpl implements WechatService {
         String replyContent = "";
 
         if (doesNeedHelp(querykey)) {
-            replyContent = wechatTemplate.getString("HelpMessage");
+            replyContent = wechatTemplate.getString("HelpMessage").replace(TAB, "");
 
         } else if (StringUtils.startsWith(querykey, "新概念")) {
             String key = querykey.replace("新概念", "");
@@ -95,7 +96,7 @@ public class WechatServiceImpl implements WechatService {
         return replyTextMessage;
     }
 
-    private String generateNewsMessage(TextMessage textMessage) {
+    public String generateNewsMessage(TextMessage textMessage) {
         String newsMessage = wechatTemplate.getString("NewsMessage")
                 .replace("${ToUserName}", MSG_START + textMessage.getFromUserName() + MSG_END)
                 .replace("${FromUserName}", MSG_START + textMessage.getToUserName() + MSG_END)
