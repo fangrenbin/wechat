@@ -101,14 +101,14 @@ public class WechatServiceImpl implements WechatService {
                 .replace("${FromUserName}", MSG_START + textMessage.getToUserName() + MSG_END)
                 .replace("${CreateTime}", String.valueOf(new Date().getTime()))
                 .replace("${MsgType}", MSG_START + SendMessageType.NEWS.getValue() + MSG_END)
-                .replace("${title1}", MSG_START + "图文消息1 TITLE" + MSG_END)
+                .replace("${title1}", MSG_START + "arduino ethernet shield通过网页来控制LED" + MSG_END)
                 .replace("${description1}", MSG_START + "你好，这是图文消息1，这个是测试信息，请不要当真哦" + MSG_END)
-                .replace("${picurl1}", MSG_START + "http://frb.name/wp-content/uploads/2013/09/QQ截图20130916170825.png" + MSG_END)
-                .replace("${url1}", MSG_START + "" + MSG_END)
-                .replace("${title2}", MSG_START + "图文消息2 TITLE" + MSG_END)
+                .replace("${picurl1}", MSG_START + "http://frb.name/wp-content/uploads/2012/12/Untitled-Sketch_bb_thumb.png" + MSG_END)
+                .replace("${url1}", MSG_START + "http://frb.name/arduino-ethernet-shield-control-led/" + MSG_END)
+                .replace("${title2}", MSG_START + "MongoVUE刪除特定的文檔" + MSG_END)
                 .replace("${description2}", MSG_START + "你好，这是图文消息2，这个是测试信息，请不要当真哦" + MSG_END)
-                .replace("${picurl2}", MSG_START + "http://frb.name/wp-content/uploads/2013/04/i2c.jpg" + MSG_END)
-                .replace("${url2}", MSG_START + "" + MSG_END);
+                .replace("${picurl2}", MSG_START + "http://frb.name/wp-content/uploads/2011/01/kernels-300x225.jpg" + MSG_END)
+                .replace("${url2}", MSG_START + "http://frb.name/ubuntu-start-menus/" + MSG_END);
 
         return newsMessage;
     }
