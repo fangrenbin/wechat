@@ -1,7 +1,7 @@
 package name.frb.wechat.service.impl;
 
 import name.frb.configuration.xmlconfiguration.XmlConfiguration;
-import name.frb.wechat.bean.MessageType;
+import name.frb.wechat.bean.ReceiveMessageType;
 import name.frb.wechat.bean.SendMessageType;
 import name.frb.wechat.dao.MsgDao;
 import name.frb.wechat.dao.NcenglishDao;
@@ -32,7 +32,7 @@ public class WechatServiceImpl implements WechatService {
         }
 
         String msgType = xmlReader.getString("MsgType");
-        if (!StringUtils.equals(msgType, MessageType.TEXT.getValue())) {
+        if (!StringUtils.equals(msgType, ReceiveMessageType.TEXT.getValue())) {
             return "你发了一条非文本信息，我有时间会看的哦。";
         }
 
