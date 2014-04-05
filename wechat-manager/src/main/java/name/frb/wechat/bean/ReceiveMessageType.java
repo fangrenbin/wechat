@@ -48,7 +48,7 @@ public enum ReceiveMessageType {
      *
      * @param value
      */
-    private MessageType(String value) {
+    private ReceiveMessageType(String value) {
         this.value = value;
     }
 }
