@@ -14,6 +14,7 @@ public class MessageServiceImpl implements MessageService {
         return msgDao.retrieveTextMessage();
     }
 
+    //TODO  这里用来手工处理信息，回复的信息不单限于文本信息
     @Override
     public boolean addMessage(TextMessage textMessage) {
         String msgId = textMessage.getMsgId();

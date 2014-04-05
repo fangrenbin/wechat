@@ -14,6 +14,8 @@
     <HelpMessage>
         查看新概念英语课文：\n请输入：新概念＋册＋课\n例：新概念310，查看第3册第10课的课文。
     </HelpMessage>
+
+    <!-- 回复消息模板 -->
     <TextMessage>
         <![CDATA[
             <xml>
@@ -57,7 +59,7 @@
                 <ToUserName>toUser</ToUserName>
                 <FromUserName>fromUser</FromUserName>
                 <CreateTime>12345678</CreateTime>
-                <MsgType>video]]</MsgType>
+                <MsgType>video</MsgType>
                 <Video>
                     <MediaId>media_id</MediaId>
                     <Title>title</Title>
@@ -86,23 +88,23 @@
     <NewsMessage>
         <![CDATA[
             <xml>
-                <ToUserName>toUser</ToUserName>
-                <FromUserName>fromUser</FromUserName>
-                <CreateTime>12345678</CreateTime>
-                <MsgType>news</MsgType>
+                <ToUserName>${ToUserName}</ToUserName>
+                <FromUserName>${FromUserName}</FromUserName>
+                <CreateTime>${CreateTime}</CreateTime>
+                <MsgType>${MsgType}</MsgType>
                 <ArticleCount>2</ArticleCount>
                 <Articles>
                     <item>
-                        <Title>title1</Title>
-                        <Description>description1</Description>
-                        <PicUrl>picurl</PicUrl>
-                        <Url>url</Url>
+                        <Title>${title1}</Title>
+                        <Description>${description1}</Description>
+                        <PicUrl>${picurl1}</PicUrl>
+                        <Url>${url1}</Url>
                     </item>
                     <item>
-                        <Title>title</Title>
-                        <Description>description</Description>
-                        <PicUrl>picurl</PicUrl>
-                        <Url>url</Url>
+                        <Title>${title2}</Title>
+                        <Description>${description2}</Description>
+                        <PicUrl>${picurl2}</PicUrl>
+                        <Url>${url2}</Url>
                     </item>
                 </Articles>
             </xml>

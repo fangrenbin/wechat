@@ -2,6 +2,7 @@ package name.frb.wechat.service.impl;
 
 import name.frb.configuration.xmlconfiguration.XmlConfiguration;
 import name.frb.wechat.bean.MessageType;
+import name.frb.wechat.bean.SendMessageType;
 import name.frb.wechat.dao.MsgDao;
 import name.frb.wechat.dao.NcenglishDao;
 import name.frb.wechat.model.wechat.TextMessage;
@@ -18,6 +19,9 @@ public class WechatServiceImpl implements WechatService {
     private MsgDao msgdao;
     private NcenglishDao ncenglishDao;
 
+    private final static String MSG_START = "<![CDATA[";
+    private final static String MSG_END = "]]>";
+
     @Override
     public String replyMessage(InputStream inputStream) {
         XMLConfiguration xmlReader = new XMLConfiguration();
@@ -28,11 +32,11 @@ public class WechatServiceImpl implements WechatService {
         }
 
         String msgType = xmlReader.getString("MsgType");
-        if (StringUtils.equals(msgType, MessageType.TEXT.getValue())) {
-            return dealWithTextMessage(xmlReader);
+        if (!StringUtils.equals(msgType, MessageType.TEXT.getValue())) {
+            return "你发了一条非文本信息，我有时间会看的哦。";
         }
 
-        return "";
+        return dealWithTextMessage(xmlReader);
     }
 
     /**
@@ -42,7 +46,7 @@ public class WechatServiceImpl implements WechatService {
      * @return
      */
     private String dealWithTextMessage(XMLConfiguration xmlReader) {
-        String replyMessage = "";
+        String replyTextMessage = "";
         //接收TEXT消息
         TextMessage textMessage = new TextMessage();
         textMessage.setToUserName(xmlReader.getString("ToUserName"));
@@ -73,21 +77,42 @@ public class WechatServiceImpl implements WechatService {
             if (StringUtils.isEmpty(replyContent)) {
                 replyContent = wechatTemplate.getString("NoContent");
             }
+        } else if (StringUtils.equals(querykey, "图文信息测试")) {
+            return generateNewsMessage(textMessage);
 
         } else {
             replyContent = wechatTemplate.getString("UnKnowOrder");
         }
 
         // 3nd. form reply message to xml type
-        replyMessage = wechatTemplate.getString("TextMessage")
-                .replace("${ToUserName}", "<![CDATA[" + textMessage.getFromUserName() + "]]>")
-                .replace("${FromUserName}", "<![CDATA[" + textMessage.getToUserName() + "]]>")
+        replyTextMessage = wechatTemplate.getString("TextMessage")
+                .replace("${ToUserName}", MSG_START + textMessage.getFromUserName() + MSG_END)
+                .replace("${FromUserName}", MSG_START + textMessage.getToUserName() + MSG_END)
                 .replace("${CreateTime}", String.valueOf(new Date().getTime()))
-                .replace("${MsgType}", "<![CDATA[" + MessageType.TEXT.getValue() + "]]>")
-                .replace("${Content}", "<![CDATA[" + replyContent + "]]>");
+                .replace("${MsgType}", MSG_START + SendMessageType.TEXT.getValue() + MSG_END)
+                .replace("${Content}", MSG_START + replyContent + MSG_END);
 
-        return replyMessage;
+        return replyTextMessage;
     }
+
+    private String generateNewsMessage(TextMessage textMessage) {
+        String newsMessage = wechatTemplate.getString("NewsMessage")
+                .replace("${ToUserName}", MSG_START + textMessage.getFromUserName() + MSG_END)
+                .replace("${FromUserName}", MSG_START + textMessage.getToUserName() + MSG_END)
+                .replace("${CreateTime}", String.valueOf(new Date().getTime()))
+                .replace("${MsgType}", MSG_START + SendMessageType.NEWS.getValue() + MSG_END)
+                .replace("${title1}", MSG_START + "图文消息1 TITLE" + MSG_END)
+                .replace("${description1}", MSG_START + "你好，这是图文消息1，这个是测试信息，请不要当真哦" + MSG_END)
+                .replace("${picurl1}", MSG_START + "http://frb.name/wp-content/uploads/2013/09/QQ截图20130916170825.png" + MSG_END)
+                .replace("${url1}", MSG_START + "" + MSG_END)
+                .replace("${title2}", MSG_START + "图文消息2 TITLE" + MSG_END)
+                .replace("${description2}", MSG_START + "你好，这是图文消息2，这个是测试信息，请不要当真哦" + MSG_END)
+                .replace("${picurl2}", MSG_START + "http://frb.name/wp-content/uploads/2013/04/i2c.jpg" + MSG_END)
+                .replace("${url2}", MSG_START + "" + MSG_END);
+
+        return newsMessage;
+    }
+
 
     /**
      * whether needs help

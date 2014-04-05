@@ -1,9 +1,9 @@
 package name.frb.wechat.bean;
 
 /**
- * Reply message type
+ * Receive message type
  */
-public enum MessageType {
+public enum ReceiveMessageType {
     /**
      * 文本消息
      */
