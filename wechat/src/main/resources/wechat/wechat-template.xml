@@ -1,9 +1,11 @@
 <Root>
     <ReplyMessage>
-        感谢您关注\n
-        快乐学ENGLISH\n
-        现在由“机器小宝”为您服务! :)\n
-        输入：help获取指令
+        <![CDATA[
+            感谢您关注
+            快乐学ENGLISH
+            现在由“机器小宝”为您服务! :)
+            输入：help获取指令
+        ]]>
     </ReplyMessage>
     <UnKnowOrder>
         机器人小宝宝不知道您说什么，试试输入help。
@@ -13,7 +15,14 @@
     </NoContent>
     <HelpMessage>
         <![CDATA[
-            1. 查看新概念英语课文：\n请输入：新概念＋册＋课\n例：新概念310，查看第3册第10课的课文。\n2. 查看BBC NEWS\n请输入：BBC\n3.英文单词翻译\n请输入：翻译＋单词\n例：翻译car
+            1. 查看新概念英语课文：
+            请输入：新概念＋册＋课
+            例：新概念310，查看第3册第10课的课文。
+            2. 查看BBC NEWS
+            请输入：BBC
+            3.英文单词翻译
+            请输入：翻译＋单词
+            例：翻译car
         ]]>
     </HelpMessage>
 
