@@ -86,7 +86,7 @@ public class WechatServiceImpl implements WechatService {
 
         } else if (StringUtils.startsWith(querykey, "#word")) {
             String words = querykey.replace("#word", "");
-            return translationService.translatEnToZh(words);
+            replyContent = translationService.translatEnToZh(words);
         } else {
             replyContent = wechatTemplate.getString("UnKnowOrder");
         }
