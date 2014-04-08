@@ -24,16 +24,20 @@
     </bean>
     <bean id="sysconfig" class="name.frb.configuration.xmlconfiguration.XmlConfiguration" init-method="init">
         <property name="rescourceLoader" ref="resourceLoader"/>
-        <constructor-arg value="classpath:conf/local/sys-configuration.xml;classpath*:conf/common/sys-configuration.xml"/>
+        <constructor-arg
+                value="classpath:conf/local/sys-configuration.xml;classpath*:conf/common/sys-configuration.xml"/>
     </bean>
     <bean class="name.frb.wechat.placeholder.XmlPropertyPlaceholderConfigurer">
         <property name="config" ref="sysconfig"/>
     </bean>
 
+    <bean id="translationService" class="name.frb.wechat.service.impl.TranslationServiceImpl"/>
+
     <bean id="ncenglishDao" class="name.frb.wechat.dao.NcenglishDao">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
     <bean id="wechatService" class="name.frb.wechat.service.impl.WechatServiceImpl">
+        <property name="translationService" ref="translationService"/>
         <property name="wechatTemplate" ref="wechatTemplate"/>
         <property name="msgdao" ref="msgDao"/>
         <property name="ncenglishDao" ref="ncenglishDao"/>

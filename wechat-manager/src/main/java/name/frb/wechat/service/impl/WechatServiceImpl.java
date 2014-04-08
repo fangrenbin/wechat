@@ -6,6 +6,7 @@ import name.frb.wechat.bean.SendMessageType;
 import name.frb.wechat.dao.MsgDao;
 import name.frb.wechat.dao.NcenglishDao;
 import name.frb.wechat.model.wechat.TextMessage;
+import name.frb.wechat.service.TranslationService;
 import name.frb.wechat.service.WechatService;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.XMLConfiguration;
@@ -15,6 +16,8 @@ import java.io.InputStream;
 import java.util.Date;
 
 public class WechatServiceImpl implements WechatService {
+    private TranslationService translationService;
+
     private XmlConfiguration wechatTemplate;
     private MsgDao msgdao;
     private NcenglishDao ncenglishDao;
@@ -81,6 +84,9 @@ public class WechatServiceImpl implements WechatService {
         } else if (StringUtils.equals(querykey, "图文信息测试")) {
             return generateNewsMessage(textMessage);
 
+        } else if (StringUtils.startsWith(querykey, "#word")) {
+            String words = querykey.replace("#word", "");
+            return translationService.translatEnToZh(words);
         } else {
             replyContent = wechatTemplate.getString("UnKnowOrder");
         }
@@ -96,7 +102,7 @@ public class WechatServiceImpl implements WechatService {
         return replyTextMessage;
     }
 
-    public String generateNewsMessage(TextMessage textMessage) {
+    private String generateNewsMessage(TextMessage textMessage) {
         String newsMessage = wechatTemplate.getString("NewsMessage")
                 .replace("${ToUserName}", MSG_START + textMessage.getFromUserName() + MSG_END)
                 .replace("${FromUserName}", MSG_START + textMessage.getToUserName() + MSG_END)
@@ -114,7 +120,6 @@ public class WechatServiceImpl implements WechatService {
         return newsMessage;
     }
 
-
     /**
      * whether needs help
      *
@@ -130,6 +135,10 @@ public class WechatServiceImpl implements WechatService {
         key = key.toUpperCase();
 
         return StringUtils.equals(key, "HELP");
+    }
+
+    public void setTranslationService(TranslationService translationService) {
+        this.translationService = translationService;
     }
 
     public void setWechatTemplate(XmlConfiguration wechatTemplate) {
