@@ -56,7 +56,7 @@ public class WechatServiceImpl implements WechatService {
         // 处理推送事件
         if (StringUtils.equals(msgType, ReceiveMessageType.EVENT.getValue())) {
             //TODO    欢迎信息和再见信息都需要做成可维护的。
-            String eventType = xmlReader.getString("subscribe");
+            String eventType = xmlReader.getString("Event");
             if (StringUtils.equals(eventType, SUBSCRIBE)) {
                 replyContent = wechatTemplate.getString("WelcomeMessage");
             } else {
