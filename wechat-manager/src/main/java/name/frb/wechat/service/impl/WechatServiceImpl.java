@@ -26,6 +26,9 @@ public class WechatServiceImpl implements WechatService {
     private final static String MSG_END = "]]>";
     private final static String TAB = "  ";
 
+    private final static String SUBSCRIBE = "subscribe";
+    private final static String UNSUBSCRIBE = "unsubscribe";
+
     @Override
     public String replyMessage(InputStream inputStream) {
         XMLConfiguration xmlReader = new XMLConfiguration();
@@ -35,12 +38,7 @@ public class WechatServiceImpl implements WechatService {
             System.err.println(e);
         }
 
-        String msgType = xmlReader.getString("MsgType");
-        if (!StringUtils.equals(msgType, ReceiveMessageType.TEXT.getValue())) {
-            return "你发了一条非文本信息，我有时间会看的哦。";
-        }
-
-        return dealWithTextMessage(xmlReader);
+        return dealWithOrderMessage(xmlReader);
     }
 
     /**
@@ -49,52 +47,73 @@ public class WechatServiceImpl implements WechatService {
      * @param xmlReader
      * @return
      */
-    private String dealWithTextMessage(XMLConfiguration xmlReader) {
-        String replyTextMessage = "";
-        //接收TEXT消息
-        TextMessage textMessage = new TextMessage();
-        textMessage.setToUserName(xmlReader.getString("ToUserName"));
-        textMessage.setFromUserName(xmlReader.getString("FromUserName"));
-        textMessage.setCreateTime(xmlReader.getString("CreateTime"));
-        textMessage.setMsgType(xmlReader.getString("MsgType"));
-        textMessage.setContent(xmlReader.getString("Content"));
-        textMessage.setMsgId(xmlReader.getString("MsgId"));
-
-        // 保存消息到数据库
-        boolean success = msgdao.addTextMessage(textMessage);
-        if (!success) {
-            System.err.println("Failed to save text message");
-            return "error";
-        }
-
-        // 处理查看新概念请求
-        String querykey = xmlReader.getString("Content");
+    private String dealWithOrderMessage(XMLConfiguration xmlReader) {
         String replyContent = "";
+        String msgType = xmlReader.getString("MsgType");
+        String toUserName = xmlReader.getString("ToUserName");
+        String fromUserName = xmlReader.getString("FromUserName");
+        // 处理非文本信息
+        if (!StringUtils.equals(msgType, ReceiveMessageType.TEXT.getValue())) {
+            replyContent = "你发了一条非文本信息，我有时间会看的哦。";
 
-        if (doesNeedHelp(querykey)) {
-            replyContent = wechatTemplate.getString("HelpMessage").replace(TAB, "");
-
-        } else if (StringUtils.startsWith(querykey, "新概念")) {
-            String key = querykey.replace("新概念", "");
-            replyContent = ncenglishDao.retrieveNcenglishContent(key);
-
-            if (StringUtils.isEmpty(replyContent)) {
-                replyContent = wechatTemplate.getString("NoContent");
+        }
+        // 处理推送事件
+        else if (StringUtils.equals(msgType, ReceiveMessageType.EVENT.getValue())) {
+            //TODO    欢迎信息和再见信息都需要做成可维护的。
+            String eventType = xmlReader.getString("subscribe");
+            if (StringUtils.equals(eventType, SUBSCRIBE)) {
+                replyContent = xmlReader.getString("WelcomeMessage");
+            } else {
+                replyContent = xmlReader.getString("GoodByeMessage");
             }
-        } else if (StringUtils.equals(querykey, "图文信息测试")) {
-            return generateNewsMessage(textMessage);
+        }
+        // 处理文本信息
+        else {
+            //接收TEXT消息
+            TextMessage textMessage = new TextMessage();
+            textMessage.setToUserName(xmlReader.getString("ToUserName"));
+            textMessage.setFromUserName(xmlReader.getString("FromUserName"));
+            textMessage.setCreateTime(xmlReader.getString("CreateTime"));
+            textMessage.setMsgType(xmlReader.getString("MsgType"));
+            textMessage.setContent(xmlReader.getString("Content"));
+            textMessage.setMsgId(xmlReader.getString("MsgId"));
 
-        } else if (StringUtils.startsWith(querykey, "翻译")) {
-            String words = querykey.replace("翻译", "");
-            replyContent = translationService.translatEnToZh(words);
-        } else {
-            replyContent = wechatTemplate.getString("UnKnowOrder");
+            // 保存消息到数据库
+            boolean success = msgdao.addTextMessage(textMessage);
+            if (!success) {
+                System.err.println("Failed to save text message");
+                return "error";
+            }
+
+            // 处理查看指令
+            String querykey = xmlReader.getString("Content");
+
+            if (doesNeedHelp(querykey)) {
+                replyContent = wechatTemplate.getString("HelpMessage").replace(TAB, "");
+
+            } else if (StringUtils.startsWith(querykey, "新概念")) {
+                //FIXME  这里应该是替换第一次出现的字符串，不能将字符串中的所有字符为关键的都替换掉。
+                String key = querykey.replace("新概念", "");
+                replyContent = ncenglishDao.retrieveNcenglishContent(key);
+
+                if (StringUtils.isEmpty(replyContent)) {
+                    replyContent = wechatTemplate.getString("NoContent");
+                }
+            } else if (StringUtils.equals(querykey, "图文信息测试")) {
+                return generateNewsMessage(textMessage);
+
+            } else if (StringUtils.startsWith(querykey, "翻译")) {
+                String words = querykey.replace("翻译", "");
+                replyContent = translationService.translatEnToZh(words);
+            } else {
+                replyContent = wechatTemplate.getString("UnKnowOrder");
+            }
         }
 
-        // 3nd. form reply message to xml type
-        replyTextMessage = wechatTemplate.getString("TextMessage")
-                .replace("${ToUserName}", MSG_START + textMessage.getFromUserName() + MSG_END)
-                .replace("${FromUserName}", MSG_START + textMessage.getToUserName() + MSG_END)
+        // form reply message to xml type
+        String replyTextMessage = wechatTemplate.getString("TextMessage")
+                .replace("${ToUserName}", MSG_START + fromUserName + MSG_END)
+                .replace("${FromUserName}", MSG_START + toUserName + MSG_END)
                 .replace("${CreateTime}", String.valueOf(new Date().getTime()))
                 .replace("${MsgType}", MSG_START + SendMessageType.TEXT.getValue() + MSG_END)
                 .replace("${Content}", MSG_START + replyContent + MSG_END);
@@ -102,7 +121,14 @@ public class WechatServiceImpl implements WechatService {
         return replyTextMessage;
     }
 
+    /**
+     * Generate news type message
+     *
+     * @param textMessage
+     * @return
+     */
     private String generateNewsMessage(TextMessage textMessage) {
+        //TODO   可以控制图文信息的条数
         String newsMessage = wechatTemplate.getString("NewsMessage")
                 .replace("${ToUserName}", MSG_START + textMessage.getFromUserName() + MSG_END)
                 .replace("${FromUserName}", MSG_START + textMessage.getToUserName() + MSG_END)
@@ -121,7 +147,7 @@ public class WechatServiceImpl implements WechatService {
     }
 
     /**
-     * whether needs help
+     * sb. whether needs help
      *
      * @param queryKey
      * @return true or false

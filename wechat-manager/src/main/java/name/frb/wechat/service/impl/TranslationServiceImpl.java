@@ -6,6 +6,8 @@ import name.frb.wechat.service.TranslationService;
 import org.apache.commons.collections.CollectionUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.util.FileSystemUtils;
+import sun.misc.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,8 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 翻译单词，调用有道翻译API，或者百度翻译API或者微软翻译API
- * URL:http://fanyi.youdao.com/openapi?path=data-mode
+ * 翻译单词，调用百度翻译API
  */
 public class TranslationServiceImpl implements TranslationService {
     //    private final static String ID = "2511376";
@@ -38,6 +39,7 @@ public class TranslationServiceImpl implements TranslationService {
     public String translatEnToZh(String words) {
         String requstUrl = REQUEST_URL.replace("${API_KEY}", API_KEY).replace("${WORDS}", words).replace("${FROM}", EN).replace("${TO}", ZH);
         String returnString = null;
+        // 获取接口内容
         try {
             URL url = new URL(requstUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -62,16 +64,17 @@ public class TranslationServiceImpl implements TranslationService {
             return null;
         }
 
-
+        // 解析返回JSON格式的数据
         JSONObject jsonObject = new JSONObject(returnString);
+
         TranslationResult transResult = new TranslationResult();
         transResult.setFrom(jsonObject.getString("from"));
         transResult.setTo(jsonObject.getString("to"));
 
         List<TranslationResultList> transResultList = new ArrayList<TranslationResultList>();
-        JSONArray resultJosnArrayList = jsonObject.getJSONArray("trans_result");
-        for (int i = 0; i < resultJosnArrayList.length(); i++) {
-            JSONObject jsonItem = resultJosnArrayList.getJSONObject(i);
+        JSONArray resultJosnArray = jsonObject.getJSONArray("trans_result");
+        for (int i = 0; i < resultJosnArray.length(); i++) {
+            JSONObject jsonItem = resultJosnArray.getJSONObject(i);
 
             TranslationResultList resultList = new TranslationResultList();
             resultList.setSrc(jsonItem.getString("src"));

@@ -7,8 +7,17 @@ import java.util.List;
  * TranslationResult
  */
 public class TranslationResult {
+    /**
+     * 翻译语种
+     */
     private String from;
+    /**
+     * 翻译成的语种
+     */
     private String to;
+    /**
+     * 翻译结果列表，支持多单词翻译，所以返回一个列表
+     */
     private List<TranslationResultList> trans_result = new ArrayList<TranslationResultList>();
 
     public String getFrom() {

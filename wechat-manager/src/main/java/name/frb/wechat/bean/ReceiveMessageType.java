@@ -5,6 +5,10 @@ package name.frb.wechat.bean;
  */
 public enum ReceiveMessageType {
     /**
+     * 事件
+     */
+    EVENT("event"),
+    /**
      * 文本消息
      */
     TEXT("text"),

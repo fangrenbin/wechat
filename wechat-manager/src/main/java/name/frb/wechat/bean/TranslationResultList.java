@@ -1,5 +1,8 @@
 package name.frb.wechat.bean;
 
+/**
+ * 百度翻译结果列表
+ */
 public class TranslationResultList {
     private String src;
     private String dst;
