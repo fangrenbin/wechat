@@ -58,10 +58,10 @@ public class WechatServiceImpl implements WechatService {
             //TODO    欢迎信息和再见信息都需要做成可维护的。
             String eventType = xmlReader.getString("subscribe");
             if (StringUtils.equals(eventType, SUBSCRIBE)) {
-                replyContent = xmlReader.getString("WelcomeMessage");
+                replyContent = wechatTemplate.getString("WelcomeMessage");
             } else {
                 //TODO delete user information, not reply goodbye message.
-                replyContent = xmlReader.getString("GoodByeMessage");
+                replyContent = wechatTemplate.getString("GoodByeMessage");
             }
         }
         // 处理文本信息
