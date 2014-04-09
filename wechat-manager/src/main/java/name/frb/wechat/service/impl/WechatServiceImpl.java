@@ -52,23 +52,20 @@ public class WechatServiceImpl implements WechatService {
         String msgType = xmlReader.getString("MsgType");
         String toUserName = xmlReader.getString("ToUserName");
         String fromUserName = xmlReader.getString("FromUserName");
-        // 处理非文本信息
-        if (!StringUtils.equals(msgType, ReceiveMessageType.TEXT.getValue())) {
-            replyContent = "你发了一条非文本信息，我有时间会看的哦。";
 
-        }
         // 处理推送事件
-        else if (StringUtils.equals(msgType, ReceiveMessageType.EVENT.getValue())) {
+        if (StringUtils.equals(msgType, ReceiveMessageType.EVENT.getValue())) {
             //TODO    欢迎信息和再见信息都需要做成可维护的。
             String eventType = xmlReader.getString("subscribe");
             if (StringUtils.equals(eventType, SUBSCRIBE)) {
                 replyContent = xmlReader.getString("WelcomeMessage");
             } else {
+                //TODO delete user information, not reply goodbye message.
                 replyContent = xmlReader.getString("GoodByeMessage");
             }
         }
         // 处理文本信息
-        else {
+        else if (StringUtils.equals(msgType, ReceiveMessageType.TEXT.getValue())) {
             //接收TEXT消息
             TextMessage textMessage = new TextMessage();
             textMessage.setToUserName(xmlReader.getString("ToUserName"));
@@ -108,6 +105,9 @@ public class WechatServiceImpl implements WechatService {
             } else {
                 replyContent = wechatTemplate.getString("UnKnowOrder");
             }
+        } else {
+            // 处理非文本信息
+            replyContent = "你发了一条非文本信息，我有时间会看的哦。";
         }
 
         // form reply message to xml type
