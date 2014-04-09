@@ -55,7 +55,7 @@ public class WechatServiceImpl implements WechatService {
 
         // 处理推送事件
         if (StringUtils.equals(msgType, ReceiveMessageType.EVENT.getValue())) {
-            //TODO    欢迎信息和再见信息都需要做成可维护的。
+            //TODO 欢迎信息和再见信息都需要做成可维护的，存到，然后缓存到文件做到及时响应，不去查数据库。
             String eventType = xmlReader.getString("Event");
             if (StringUtils.equals(eventType, SUBSCRIBE)) {
                 replyContent = wechatTemplate.getString("WelcomeMessage");
@@ -103,6 +103,7 @@ public class WechatServiceImpl implements WechatService {
                 String words = querykey.replace("翻译", "");
                 replyContent = translationService.translatEnToZh(words);
             } else {
+                //TODO reply some rude words to rude people.
                 replyContent = wechatTemplate.getString("UnKnowOrder");
             }
         } else {

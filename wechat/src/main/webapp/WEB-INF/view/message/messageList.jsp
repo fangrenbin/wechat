@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title></title>
@@ -22,8 +23,9 @@
         <th width="20%">msgId</th>
         <th width="20%">operation</th>
     </tr>
-    <c:forEach items="${messageList}"  var="message">
+    <c:forEach items="${textMsgList}"  var="message">
         <tr>
+            <td>${message.id}</td>
             <td>${message.toUserName}</td>
             <td>${message.fromUserName}</td>
             <td>${message.createTime}</td>
@@ -35,7 +37,6 @@
             </td>
         </tr>
     </c:forEach>
-    <a href="<%=request.getContextPath() %>/user/addUserPage" target="_blank">add user</a>
 </table>
 </body>
 </html>

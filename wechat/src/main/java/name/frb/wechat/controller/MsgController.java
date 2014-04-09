@@ -25,7 +25,7 @@ public class MsgController {
     public ModelAndView messageList() {
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("messageList");
+        mv.setViewName("message/messageList");
         List<TextMessage> textMsgList = messageService.retrieveMessageList();
         mv.addObject("textMsgList", textMsgList);
 

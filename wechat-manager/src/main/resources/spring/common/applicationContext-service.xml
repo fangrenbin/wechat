@@ -43,4 +43,11 @@
         <property name="ncenglishDao" ref="ncenglishDao"/>
     </bean>
 
+    <bean id="newsMsgDao" class="name.frb.wechat.dao.NewsMsgDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="newsMsgService" class="name.frb.wechat.service.impl.NewsMsgServiceImpl">
+        <property name="newsMsgDao" ref="newsMsgDao"/>
+    </bean>
 </beans>
