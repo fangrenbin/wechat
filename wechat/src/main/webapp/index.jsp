@@ -1,5 +1,7 @@
 <html>
+<head>
+</head>
 <body>
-<h2>Hello World!</h2>
+Hi welcome to wechat platform
 </body>
 </html>
