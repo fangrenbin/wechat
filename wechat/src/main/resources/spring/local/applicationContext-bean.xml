@@ -7,7 +7,7 @@
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="messageController" class="name.frb.wechat.controller.MsgController">
+    <bean id="messageController" class="name.frb.wechat.controller.UserMsgController">
         <property name="messageService" ref="messageService"/>
     </bean>
 
@@ -18,7 +18,6 @@
     <bean id="newsMsgController" class="name.frb.wechat.controller.NewsMsgController">
         <property name="newsMsgService" ref="newsMsgService"/>
     </bean>
-
 
     <!-- Spring MVC ResponseBody encoding converter -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

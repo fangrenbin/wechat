@@ -12,12 +12,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/message")
-public class MsgController {
+public class UserMsgController {
     @Resource
     private MessageService messageService;
 
     /**
-     * 信息列表
+     * 微信用户信息列表
      *
      * @return
      */

@@ -10,6 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * 管理新闻类消息
+ */
 @Controller
 @RequestMapping(value = "/newsMsg")
 public class NewsMsgController {

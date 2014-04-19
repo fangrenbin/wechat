@@ -10,6 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 系统用户管理
+ */
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
@@ -20,7 +23,7 @@ public class UserController {
     public ModelAndView listUser() {
         ModelAndView mv = new ModelAndView();
         List<User> userList = userService.retrieveUserList();
-        mv.setViewName("listUser");
+        mv.setViewName("user/listUser");
         mv.addObject("userList", userList);
 
         return mv;
@@ -29,7 +32,7 @@ public class UserController {
     @RequestMapping(value = "addUserPage", method = RequestMethod.GET)
     public ModelAndView addUserPage() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("addUser");
+        mv.setViewName("user/addUser");
 
         return mv;
     }
@@ -52,7 +55,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
 
 
-        mv.setViewName("viewUser");
+        mv.setViewName("user/viewUser");
         User user = userService.viewUser(id);
         mv.addObject("user", user);
 
@@ -64,7 +67,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
         User user = userService.viewUser(id);
 
-        mv.setViewName("updateUser");
+        mv.setViewName("user/updateUser");
         mv.addObject("user", user);
 
         return mv;

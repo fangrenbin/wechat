@@ -6,35 +6,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 用户登陆
+ */
 @Controller
-public class HelloController {
+public class LoginController {
     @RequestMapping(value = {"/", "/welcome**"}, method = RequestMethod.GET)
     public ModelAndView welcomePage() {
-
         ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Hello World");
+        model.addObject("title", "Welcome to wechat");
         model.addObject("message", "This is welcome page!");
-        model.setViewName("hello");
-        return model;
-
-    }
-
-    @RequestMapping(value = "/admin**", method = RequestMethod.GET)
-    public ModelAndView adminPage() {
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Hello World");
-        model.addObject("message", "This is protected page!");
-        model.setViewName("admin");
+        model.setViewName("welcome");
 
         return model;
     }
 
-    //Spring Security see this :
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(
-        @RequestParam(value = "error", required = false) String error,
-        @RequestParam(value = "logout", required = false) String logout) {
+            @RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "logout", required = false) String logout) {
 
         ModelAndView model = new ModelAndView();
         if (error != null) {

@@ -55,9 +55,7 @@
         <div class="msg">${msg}</div>
     </c:if>
 
-    <form name='loginForm'
-          action="<c:url value='j_spring_security_check' />" method='POST'>
-
+    <form name='loginForm' action="<c:url value='j_spring_security_check' />" method='POST'>
         <table>
             <tr>
                 <td>User:</td>
@@ -65,16 +63,16 @@
             </tr>
             <tr>
                 <td>Password:</td>
-                <td><input type='password' name='password' /></td>
+                <td><input type='password' name='password'/></td>
             </tr>
             <tr>
                 <td colspan='2'><input name="submit" type="submit"
-                                       value="submit" /></td>
+                                       value="submit"/></td>
             </tr>
         </table>
 
         <input type="hidden" name="${_csrf.parameterName}"
-               value="${_csrf.token}" />
+               value="${_csrf.token}"/>
     </form>
 </div>
 </body>

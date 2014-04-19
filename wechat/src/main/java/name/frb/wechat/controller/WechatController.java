@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
+/**
+ * 与微信服务器通讯
+ */
 @Controller
 public class WechatController {
     /*  Wechat Token */

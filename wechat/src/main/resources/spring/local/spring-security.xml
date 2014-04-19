@@ -8,9 +8,12 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <http auto-config="true">
+        <intercept-url pattern="/welcome/**" access="ROLE_USER" />
+        <intercept-url pattern="/message/**" access="ROLE_USER" />
+        <intercept-url pattern="/newsMsg/**" access="ROLE_USER" />
         <intercept-url pattern="/user/**" access="ROLE_USER" />
         <form-login login-page="/login"
-                    default-target-url="/"
+                    default-target-url="/welcome"
                     authentication-failure-url="/login?error"
                     username-parameter="username"
                     password-parameter="password"/>
@@ -18,19 +21,6 @@
         <!-- enable csrf protection -->
         <csrf/>
     </http>
-    <!--<http auto-config="true">-->
-        <!--<intercept-url pattern="/admin**" access="ROLE_USER" />-->
-        <!--<form-login-->
-                <!--login-page="/login"-->
-                <!--default-target-url="/welcome"-->
-                <!--authentication-failure-url="/login?error"-->
-                <!--username-parameter="username"-->
-                <!--password-parameter="password" />-->
-        <!--<logout logout-success-url="/login?logout" />-->
-        <!--&lt;!&ndash; enable csrf protection &ndash;&gt;-->
-        <!--<csrf/>-->
-    <!--</http>-->
-
 
     <authentication-manager>
         <authentication-provider>
