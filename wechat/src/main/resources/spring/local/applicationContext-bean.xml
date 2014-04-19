@@ -3,19 +3,19 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userController" class="name.frb.wechat.controller.UserController">
+    <bean id="userController" class="name.frb.wechat.controller.manager.UserController">
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="messageController" class="name.frb.wechat.controller.UserMsgController">
+    <bean id="messageController" class="name.frb.wechat.controller.manager.UserMsgController">
         <property name="messageService" ref="messageService"/>
     </bean>
 
-    <bean id="wechatController" class="name.frb.wechat.controller.WechatController">
+    <bean id="wechatController" class="name.frb.wechat.controller.server.WechatController">
         <property name="wechatService" ref="wechatService"/>
     </bean>
 
-    <bean id="newsMsgController" class="name.frb.wechat.controller.NewsMsgController">
+    <bean id="newsMsgController" class="name.frb.wechat.controller.manager.NewsMsgController">
         <property name="newsMsgService" ref="newsMsgService"/>
     </bean>
 

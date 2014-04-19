@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="translationService" class="name.frb.wechat.server.service.impl.TranslationServiceImpl"/>
+
+    <bean id="ncenglishDao" class="name.frb.wechat.server.dao.NcenglishDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="msgDao" class="name.frb.wechat.server.dao.MessageDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="wechatTemplate" class="name.frb.configuration.xmlconfiguration.XmlConfiguration" init-method="init">
+        <property name="rescourceLoader" ref="resourceLoader"/>
+        <constructor-arg value="classpath:wechat/wechat-*.xml"/>
+    </bean>
+
+    <bean id="wechatService" class="name.frb.wechat.server.service.impl.WechatServiceImpl">
+        <property name="translationService" ref="translationService"/>
+        <property name="wechatTemplate" ref="wechatTemplate"/>
+        <property name="msgdao" ref="msgDao"/>
+        <property name="ncenglishDao" ref="ncenglishDao"/>
+    </bean>
+</beans>

@@ -3,51 +3,23 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userDao" class="name.frb.wechat.dao.UserDao">
+    <bean id="userDao" class="name.frb.wechat.manager.dao.UserDao">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
-    <bean id="userService" class="name.frb.wechat.service.impl.UserServiceImpl">
+    <bean id="userService" class="name.frb.wechat.manager.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
     </bean>
 
-    <bean id="msgDao" class="name.frb.wechat.dao.MsgDao">
+    <bean id="newsMsgDao" class="name.frb.wechat.manager.dao.NewsMsgDao">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
-    <bean id="messageService" class="name.frb.wechat.service.impl.MessageServiceImpl">
+
+    <bean id="newsMsgService" class="name.frb.wechat.manager.service.impl.NewsMsgServiceImpl">
+        <property name="newsMsgDao" ref="newsMsgDao"/>
+    </bean>
+
+    <bean id="messageService" class="name.frb.wechat.manager.service.impl.MessageServiceImpl">
         <property name="msgDao" ref="msgDao"/>
     </bean>
 
-    <bean id="resourceLoader" class="name.frb.configuration.resourceloader.RescourceLoader"/>
-    <bean id="wechatTemplate" class="name.frb.configuration.xmlconfiguration.XmlConfiguration" init-method="init">
-        <property name="rescourceLoader" ref="resourceLoader"/>
-        <constructor-arg value="classpath:wechat/wechat-*.xml"/>
-    </bean>
-    <bean id="sysconfig" class="name.frb.configuration.xmlconfiguration.XmlConfiguration" init-method="init">
-        <property name="rescourceLoader" ref="resourceLoader"/>
-        <constructor-arg
-                value="classpath:conf/local/sys-configuration.xml;classpath*:conf/common/sys-configuration.xml"/>
-    </bean>
-    <bean class="name.frb.wechat.placeholder.XmlPropertyPlaceholderConfigurer">
-        <property name="config" ref="sysconfig"/>
-    </bean>
-
-    <bean id="translationService" class="name.frb.wechat.service.impl.TranslationServiceImpl"/>
-
-    <bean id="ncenglishDao" class="name.frb.wechat.dao.NcenglishDao">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
-    </bean>
-    <bean id="wechatService" class="name.frb.wechat.service.impl.WechatServiceImpl">
-        <property name="translationService" ref="translationService"/>
-        <property name="wechatTemplate" ref="wechatTemplate"/>
-        <property name="msgdao" ref="msgDao"/>
-        <property name="ncenglishDao" ref="ncenglishDao"/>
-    </bean>
-
-    <bean id="newsMsgDao" class="name.frb.wechat.dao.NewsMsgDao">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
-    </bean>
-
-    <bean id="newsMsgService" class="name.frb.wechat.service.impl.NewsMsgServiceImpl">
-        <property name="newsMsgDao" ref="newsMsgDao"/>
-    </bean>
 </beans>

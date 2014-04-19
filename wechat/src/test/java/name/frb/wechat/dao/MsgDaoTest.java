@@ -1,10 +1,10 @@
 package name.frb.wechat.dao;
 
 import name.frb.wechat.AbstractTestng;
+import name.frb.wechat.server.dao.NcenglishDao;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class MsgDaoTest extends AbstractTestng {
     @Autowired
