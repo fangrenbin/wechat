@@ -1,4 +1,4 @@
 wechat-klxenglish
 =================
 
-wechat public platform demo
+wechat public platform demo.
