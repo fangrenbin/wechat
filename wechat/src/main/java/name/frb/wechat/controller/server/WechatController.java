@@ -22,7 +22,6 @@ public class WechatController {
     /*  Wechat Token */
     private static final String TOKEN = "klxenglish";
 
-    @Resource
     private WechatService wechatService;
 
     /**

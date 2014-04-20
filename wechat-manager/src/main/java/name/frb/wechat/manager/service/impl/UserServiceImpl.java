@@ -4,12 +4,10 @@ package name.frb.wechat.manager.service.impl;
 import name.frb.wechat.manager.dao.UserDao;
 import name.frb.wechat.manager.model.User;
 import name.frb.wechat.manager.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    @Autowired
     private UserDao userDao;
 
     @Override

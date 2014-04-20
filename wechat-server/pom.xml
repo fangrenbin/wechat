@@ -42,4 +42,8 @@
             <version>20140107</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+    </build>
 </project>

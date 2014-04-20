@@ -9,7 +9,7 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
-    <bean id="msgDao" class="name.frb.wechat.server.dao.MessageDao">
+    <bean id="messageDao" class="name.frb.wechat.server.dao.MessageDao">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
@@ -21,7 +21,7 @@
     <bean id="wechatService" class="name.frb.wechat.server.service.impl.WechatServiceImpl">
         <property name="translationService" ref="translationService"/>
         <property name="wechatTemplate" ref="wechatTemplate"/>
-        <property name="msgdao" ref="msgDao"/>
+        <property name="messageDao" ref="messageDao"/>
         <property name="ncenglishDao" ref="ncenglishDao"/>
     </bean>
 </beans>

@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class UserControllerTest extends AbstractTestng {
     @Autowired
-    private MessageDao msgDao;
+    private MessageDao messageDao;
 
     @Test
     public void readWechatTeplateTest() {

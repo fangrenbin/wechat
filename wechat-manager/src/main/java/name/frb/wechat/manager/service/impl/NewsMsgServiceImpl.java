@@ -1,14 +1,12 @@
 package name.frb.wechat.manager.service.impl;
 
 import name.frb.wechat.manager.dao.NewsMsgDao;
-import name.frb.wechat.server.model.NewsMessage;
 import name.frb.wechat.manager.service.NewsMsgService;
-import org.springframework.beans.factory.annotation.Autowired;
+import name.frb.wechat.server.model.NewsMessage;
 
 import java.util.List;
 
 public class NewsMsgServiceImpl implements NewsMsgService {
-    @Autowired
     private NewsMsgDao newsMsgDao;
 
     @Override

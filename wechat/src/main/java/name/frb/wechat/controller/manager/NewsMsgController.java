@@ -16,7 +16,6 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/newsMsg")
 public class NewsMsgController {
-    @Autowired
     private NewsMsgService newsMsgService;
 
     @RequestMapping(value = "/newsMsgList", method = RequestMethod.GET)

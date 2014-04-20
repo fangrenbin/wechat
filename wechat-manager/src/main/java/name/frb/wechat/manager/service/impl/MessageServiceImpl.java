@@ -1,32 +1,27 @@
 package name.frb.wechat.manager.service.impl;
 
-import name.frb.wechat.server.dao.MessageDao;
-import name.frb.wechat.server.model.TextMessage;
 import name.frb.wechat.manager.service.MessageService;
+import name.frb.wechat.server.dao.MessageDao;
+import name.frb.wechat.server.dao.NcenglishDao;
+import name.frb.wechat.server.model.TextMessage;
 
 import java.util.List;
 
 public class MessageServiceImpl implements MessageService {
-    private MessageDao msgDao;
+    private MessageDao messageDao;
+    private NcenglishDao ncenglishDao;
 
     @Override
     public List<TextMessage> retrieveMessageList() {
-        return msgDao.retrieveTextMessage();
+        return messageDao.retrieveTextMessage();
     }
 
-    //TODO  这里用来手工处理信息，回复的信息不单限于文本信息
-    @Override
-    public boolean addMessage(TextMessage textMessage) {
-        String msgId = textMessage.getMsgId();
-        boolean exist = msgDao.doesTextMessageExist(msgId);
-        if (exist) {
-            return true;
-        }
-
-        return msgDao.addTextMessage(textMessage);
+    public void setMessageDao(MessageDao messageDao) {
+        this.messageDao = messageDao;
     }
 
-    public void setMsgDao(MessageDao msgDao) {
-        this.msgDao = msgDao;
+    public void setNcenglishDao(NcenglishDao ncenglishDao) {
+
+        this.ncenglishDao = ncenglishDao;
     }
 }

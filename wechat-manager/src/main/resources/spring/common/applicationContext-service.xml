@@ -19,7 +19,6 @@
     </bean>
 
     <bean id="messageService" class="name.frb.wechat.manager.service.impl.MessageServiceImpl">
-        <property name="msgDao" ref="msgDao"/>
+        <property name="messageDao" ref="messageDao"/>
     </bean>
-
 </beans>

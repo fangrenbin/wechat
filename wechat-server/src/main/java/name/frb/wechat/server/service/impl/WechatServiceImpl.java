@@ -21,7 +21,7 @@ public class WechatServiceImpl implements WechatService {
     private TranslationService translationService;
 
     private XmlConfiguration wechatTemplate;
-    private MessageDao msgdao;
+    private MessageDao messageDao;
     private NcenglishDao ncenglishDao;
 
     private final static String MSG_START = "<![CDATA[";
@@ -78,7 +78,7 @@ public class WechatServiceImpl implements WechatService {
             textMessage.setMsgId(xmlReader.getString("MsgId"));
 
             // 保存消息到数据库
-            boolean success = msgdao.addTextMessage(textMessage);
+            boolean success = messageDao.addTextMessage(textMessage);
             if (!success) {
                 System.err.println("Failed to save text message");
                 return "error";
@@ -174,8 +174,8 @@ public class WechatServiceImpl implements WechatService {
         this.wechatTemplate = wechatTemplate;
     }
 
-    public void setMsgdao(MessageDao msgdao) {
-        this.msgdao = msgdao;
+    public void setMessageDao(MessageDao messageDao) {
+        this.messageDao = messageDao;
     }
 
     public void setNcenglishDao(NcenglishDao ncenglishDao) {
