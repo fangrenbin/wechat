@@ -50,6 +50,9 @@ public class WechatController {
             return "error";
         }
 
+
+        System.out.println("signature success");
+
         String replayMessage = wechatService.replyMessage(request.getInputStream());
         System.out.println("replayMessage" + replayMessage);
 
