@@ -46,6 +46,7 @@ public class WechatController {
     @ResponseBody
     public String replyMessage(HttpServletRequest request) throws IOException, ConfigurationException {
         if (!checkSignature(request)) {
+            System.err.println("signature error");
             return "error";
         }
 
