@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/newsMsg")
 public class NewsMsgController {
+    @Resource(name = "newsMsgService")
     private NewsMsgService newsMsgService;
 
     @RequestMapping(value = "/newsMsgList", method = RequestMethod.GET)

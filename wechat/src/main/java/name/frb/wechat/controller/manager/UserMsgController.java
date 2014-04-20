@@ -1,7 +1,7 @@
 package name.frb.wechat.controller.manager;
 
-import name.frb.wechat.server.model.TextMessage;
 import name.frb.wechat.manager.service.MessageService;
+import name.frb.wechat.server.model.TextMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/message")
 public class UserMsgController {
+    @Resource(name = "messageService")
     private MessageService messageService;
 
     /**

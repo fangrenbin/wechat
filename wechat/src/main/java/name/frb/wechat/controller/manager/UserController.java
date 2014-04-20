@@ -16,6 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+    @Resource(name = "userService")
     UserService userService;
 
     @RequestMapping(value = "listUser", method = RequestMethod.GET)
