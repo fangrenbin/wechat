@@ -45,7 +45,6 @@ public class WechatController {
     @RequestMapping(value = "/weixin", method = RequestMethod.POST)
     @ResponseBody
     public String replyMessage(HttpServletRequest request) throws IOException, ConfigurationException {
-        //TODO    写一个单元测试 POST数据
         if (!checkSignature(request)) {
             System.err.println("signature error");
             return "error";

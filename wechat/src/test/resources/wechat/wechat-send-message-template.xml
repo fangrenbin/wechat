@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+    <!-- 微信服务器发送信息模板，仅在单元测试中使用 -->
+    <Wechat>
+        <TextMessage>
+            <![CDATA[
+            <xml>
+                <ToUserName>${ToUserName}</ToUserName>
+                <FromUserName>${FromUserName}</FromUserName>
+                <CreateTime>${CreateTime}</CreateTime>
+                <MsgType>${MsgType}</MsgType>
+                <Content>${Content}</Content>
+                <MsgId>${MsgId}}</MsgId>
+            </xml>
+        ]]>
+        </TextMessage>
+    </Wechat>
+</Root>
