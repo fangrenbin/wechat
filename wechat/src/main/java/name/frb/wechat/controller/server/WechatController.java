@@ -48,13 +48,11 @@ public class WechatController {
         if (!checkSignature(request)) {
             System.err.println("signature error");
             return "error";
+        } else {
+            System.out.println("signature success");
         }
 
-
-        System.out.println("signature success");
-
         String replayMessage = wechatService.replyMessage(request.getInputStream());
-        System.out.println("replayMessage" + replayMessage);
 
         return replayMessage;
     }
