@@ -22,23 +22,14 @@ public class NewsMsgController {
 
     @RequestMapping(value = "/newsMsgList", method = RequestMethod.GET)
     public ModelAndView newsMsgList() {
-        ModelAndView mv = new ModelAndView();
-
         List<NewsMessage> newsMessageList = newsMsgService.retrieveNewsMassage();
-        mv.addObject("newsMessageList", newsMessageList);
 
-        mv.setViewName("newsMsg/newsMsgList");
-
-        return mv;
+        return new ModelAndView("newsMsg/newsMsgList").addObject("newsMessageList", newsMessageList);
     }
 
     @RequestMapping(value = "/addNewsMsgPage", method = RequestMethod.GET)
     public ModelAndView addNewsMsgPage() {
-        ModelAndView mv = new ModelAndView();
-
-        mv.setViewName("newsMsg/addNewsMsg");
-
-        return mv;
+        return new ModelAndView("newsMsg/addNewsMsg");
     }
 
     @RequestMapping(value = "addNewsMsg", method = RequestMethod.POST)

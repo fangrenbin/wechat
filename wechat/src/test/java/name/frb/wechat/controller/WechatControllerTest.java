@@ -6,6 +6,10 @@ import name.frb.wechat.controller.server.WechatController;
 import name.frb.wechat.server.bean.ReceiveMessageType;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.XMLConfiguration;
+import org.apache.commons.httpclient.*;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -30,6 +34,9 @@ public class WechatControllerTest extends AbstractTestng {
     @Autowired
     private XmlConfiguration wechatTemplate;
 
+    //接收微信服务消息地址
+    private final String WECHAT_URL = "http://aqueous-taiga-4186.herokuapp.com/weixin";
+
     //生成签名信息
     private final String TOKEN = "klxenglish";
     private final String TIMESTAMP = "1398151318213";
@@ -46,29 +53,56 @@ public class WechatControllerTest extends AbstractTestng {
 
     @BeforeMethod
     public void setUp() {
+        //request中加入消息的InputStream
         request = new MockHttpServletRequest();
         request.setContent(generateMessageInputStream(ReceiveMessageType.TEXT.getValue()));
 
-        //模仿微信服务器生成签名
+        String signature = generateSignature();
+        request.addParameter("signature", signature);
+        request.addParameter("timestamp", TIMESTAMP);
+        request.addParameter("nonce", NONCE);
+    }
+
+
+//    @Test
+    public void replyMessageTest() throws IOException, ConfigurationException {
+        String actual = getMessageContext(wechatController.replyMessage(request));
+        String expected = wechatTemplate.getString("UnKnowOrder");
+
+        Assert.assertEquals(actual.toString(), expected.toString());
+    }
+
+    //TODO 测试真实的地址
+//    @Test
+    public void wechatUrlTest() throws IOException {
+        HttpClient httpClient = new HttpClient();
+        PostMethod postMethod = new PostMethod("http://klxenglish.herokuapp.com/weixin/");
+        String signature = generateSignature();
+        NameValuePair[] data = {new NameValuePair("signature", signature),
+                new NameValuePair("timestamp", TIMESTAMP),
+                new NameValuePair("nonce", NONCE)};
+        postMethod.setRequestBody(data);
+
+        int statusCode = httpClient.executeMethod(postMethod);
+        //读取内容
+        byte[] responseBody = postMethod.getResponseBody();
+        //处理内容
+        System.out.println(new String(responseBody));
+    }
+
+    /**
+     * 生成签名
+     *
+     * @return
+     */
+    private String generateSignature() {
         String signature = "";
         String[] stringArray = new String[]{TOKEN, TIMESTAMP, NONCE};
         java.util.Arrays.sort(stringArray);
         for (String string : stringArray) {
             signature = signature + string;
         }
-        signature = sha1(signature);
-
-        request.addParameter("signature", signature);
-        request.addParameter("timestamp", TIMESTAMP);
-        request.addParameter("nonce", NONCE);
-    }
-
-    @Test
-    private void replyMessageTest() throws IOException, ConfigurationException {
-        String actual = getMessageContext(wechatController.replyMessage(request));
-        String expected = wechatTemplate.getString("UnKnowOrder");
-
-        Assert.assertEquals(actual, expected);
+        return sha1(signature);
     }
 
     /**
