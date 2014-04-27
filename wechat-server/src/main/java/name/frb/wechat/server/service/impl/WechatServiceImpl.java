@@ -78,15 +78,15 @@ public class WechatServiceImpl implements WechatService {
             textMessage.setMsgId(xmlReader.getString("MsgId"));
 
             // 保存消息到数据库
-//            boolean success = messageDao.addTextMessage(textMessage);
-//            if (!success) {
-//                System.err.println("Failed to save text message");
-//                return "error";
-//            }
+            //TODO 使用线程存储，确保更快速的响应
+            boolean success = messageDao.addTextMessage(textMessage);
+            if (!success) {
+                System.err.println("Failed to save text message");
+                return "error";
+            }
 
             // 处理查看指令
             String querykey = xmlReader.getString("Content");
-
             if (doesNeedHelp(querykey)) {
                 replyContent = wechatTemplate.getString("HelpMessage").replace(TAB, "");
 

@@ -1,9 +1,9 @@
 package name.frb.wechat.manager.service;
 
-import name.frb.wechat.server.model.TextMessage;
+import name.frb.wechat.manager.vo.UserMessageListVo;
 
 import java.util.List;
 
 public interface MessageService {
-    List<TextMessage> retrieveMessageList();
+    List<UserMessageListVo> retrieveMessageList();
 }

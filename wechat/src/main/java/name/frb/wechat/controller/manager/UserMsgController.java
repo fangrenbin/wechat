@@ -1,6 +1,7 @@
 package name.frb.wechat.controller.manager;
 
 import name.frb.wechat.manager.service.MessageService;
+import name.frb.wechat.manager.vo.UserMessageListVo;
 import name.frb.wechat.server.model.TextMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class UserMsgController {
         ModelAndView mv = new ModelAndView();
 
         mv.setViewName("message/messageList");
-        List<TextMessage> textMsgList = messageService.retrieveMessageList();
+        List<UserMessageListVo> textMsgList = messageService.retrieveMessageList();
         mv.addObject("textMsgList", textMsgList);
 
         System.out.print(textMsgList.size());
