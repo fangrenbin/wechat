@@ -45,7 +45,7 @@
         <h1>快速打造自己的微信公众帐号</h1>
 
         <p class="lead">不怕做不到，就怕想不到！<br />深度制定，用户管理，推送消息，自动回复，智能回复。</p>
-        <button type="button" class="btn btn-primary" onclick="location.href='login/'">登陆</button>
+        <button type="button" class="btn btn-primary " onclick="location.href='login/'">登陆</button>
     </div>
 </div>
 </body>

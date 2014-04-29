@@ -18,6 +18,10 @@
     <bean id="newsMsgController" class="name.frb.wechat.controller.manager.NewsMsgController" scope="prototype">
         <property name="newsMsgService" ref="newsMsgService"/>
     </bean>
+    
+    <bean id="personController" class="name.frb.wechat.controller.manager.PersonController" scope="prototype">
+        <property name="personService" ref="personService"/>
+    </bean>
 
     <!-- Spring MVC ResponseBody encoding converter -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

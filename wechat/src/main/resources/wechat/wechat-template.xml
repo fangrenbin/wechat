@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root>
     <WelcomeMessage>
-        真是TMD太忙了，又要上班，又要烧饭，又要看孩子，又要织毛衣，还要刷微博，还要XXOO，没时间学英语啊。
-        好吧，你不用主动学，我来督促你。输入help，让我把你的英文搞定。
+        Hello there, Welcome to happy learning english. Here, I'm going to help you pick some english up. Hope you like it.
     </WelcomeMessage>
     <GoodByeMessage>
-        非常抱歉，可能这里的内容您非常不感兴趣，我很心痛，可以留言说一下为什么吗？～_～
+        Bye bye!
     </GoodByeMessage>
     <ReplyMessage>
         <![CDATA[
             感谢您关注
             快乐学ENGLISH
-            现在由“机器小宝”为您服务! :)
             输入：help获取指令
         ]]>
     </ReplyMessage>
     <UnKnowOrder>
-        机器人小宝宝不知道您说什么，试试输入help。
+        unknown order, try help.
     </UnKnowOrder>
     <NoContent>
-        非常抱歉，您查询的内容小宝找不到，请给我留言，我马上会补上。
+        非常抱歉，您查询的内容找不到，请给我留言，我马上会补上。
     </NoContent>
     <HelpMessage>
         <![CDATA[

@@ -21,4 +21,6 @@
     <bean id="messageService" class="name.frb.wechat.manager.service.impl.MessageServiceImpl">
         <property name="messageDao" ref="messageDao"/>
     </bean>
+
+    <bean id="personService" class="name.frb.wechat.manager.service.impl.RepositoryPersonService"/>
 </beans>

@@ -1,7 +1,6 @@
 package name.frb.wechat.server.model;
 
 public class NewsMessage {
-
 //    create table news_message (
 //    id bigint not null auto_increment,
 //    title varchar(255),

@@ -2,7 +2,6 @@ package name.frb.wechat.controller.manager;
 
 import name.frb.wechat.manager.service.MessageService;
 import name.frb.wechat.manager.vo.UserMessageListVo;
-import name.frb.wechat.server.model.TextMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -34,55 +34,37 @@ public class NewsMsgController {
 
     @RequestMapping(value = "addNewsMsg", method = RequestMethod.POST)
     public ModelAndView addNewsMsg(NewsMessage newsMessage) {
-        ModelAndView mv = new ModelAndView();
-
         boolean success = newsMsgService.addNewsMsg(newsMessage);
-        mv.setViewName("redirect:newsMsgList");
 
-        return mv;
+        return new ModelAndView("redirect:newsMsgList");
     }
 
     @RequestMapping(value = "updateNewsMsgPage", method = RequestMethod.GET)
     public ModelAndView updateNewsMsgPage(long id) {
-        ModelAndView mv = new ModelAndView();
-
         NewsMessage newsMessage = newsMsgService.viewNewsMsg(id);
 
-        mv.addObject("newsMessage", newsMessage);
-        mv.setViewName("newsMsg/updateNewsMsg");
-
-        return mv;
+        return new ModelAndView("newsMsg/updateNewsMsg").addObject("newsMessage", newsMessage);
     }
 
     @RequestMapping(value = "updateNewsMsg", method = RequestMethod.POST)
     public ModelAndView updateNewsMsg(NewsMessage newsMessage) {
-        ModelAndView mv = new ModelAndView();
-
         boolean success = newsMsgService.updateNewsMsg(newsMessage);
-        mv.setViewName("redirect:newsMsgList");
 
-        return mv;
+        return new ModelAndView("redirect:newsMsgList");
     }
 
     @RequestMapping(value = "deleteNewsMsg", method = RequestMethod.GET)
     public ModelAndView deleteNewsMsg(long id) {
-        ModelAndView mv = new ModelAndView();
-
         boolean success = newsMsgService.deleteNewsMsg(id);
-        mv.setViewName("redirect:newsMsgList");
 
-        return mv;
+        return new ModelAndView("redirect:newsMsgList");
     }
 
     @RequestMapping(value = "viewNewsMsg", method = RequestMethod.GET)
     public ModelAndView viewNewsMsg(long id) {
-        ModelAndView mv = new ModelAndView();
-
         NewsMessage newsMessage = newsMsgService.viewNewsMsg(id);
-        mv.addObject("newsMessage", newsMessage);
-        mv.setViewName("newsMsg/viewNewsMsg");
 
-        return mv;
+        return new ModelAndView("newsMsg/viewNewsMsg").addObject("newsMessage", newsMessage);
     }
 
     public void setNewsMsgService(NewsMsgService newsMsgService) {

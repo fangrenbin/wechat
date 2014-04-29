@@ -2,8 +2,8 @@
 <Root>
     <Database>
         <DirverClass>com.mysql.jdbc.Driver</DirverClass>
-        <JdbcUrl>jdbc:mysql://localhost:3306/klxdb?characterEncoding=UTF8</JdbcUrl>
+        <JdbcUrl>jdbc:mysql://localhost:3306/wechat?characterEncoding=UTF8</JdbcUrl>
         <User>root</User>
-        <Password></Password>
+        <Password>123456</Password>
     </Database>
 </Root>

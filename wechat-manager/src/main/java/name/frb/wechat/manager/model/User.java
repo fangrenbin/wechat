@@ -1,6 +1,15 @@
 package name.frb.wechat.manager.model;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String username;
     private String password;

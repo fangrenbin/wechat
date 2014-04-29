@@ -49,6 +49,7 @@
                     <thead>
                     <tr>
                         <%--<th>toUserName</th>--%>
+                        <th>#</th>
                         <th>fromUserName</th>
                         <th>createTime</th>
                         <th>content</th>
@@ -59,6 +60,7 @@
                     <c:forEach items="${textMsgList}"  var="message">
                         <tr>
                             <%--<td>${message.toUserName}</td>--%>
+                            <td></td>
                             <td>${message.fromUserName}</td>
                             <td>${message.createTime}</td>
                             <td>${message.content}</td>
@@ -70,6 +72,10 @@
                     </tbody>
                 </table>
             </div>
+            <ul class="pager">
+                <li class="previous"><a href="#">&larr; Older</a></li>
+                <li class="next"><a href="#">Newer &rarr;</a></li>
+            </ul>
         </div>
     </div>
 </div>
