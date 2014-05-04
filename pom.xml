@@ -15,11 +15,14 @@
         <module>wechat</module>
         <module>wechat-manager</module>
         <module>wechat-server</module>
+        <module>wechat-persist</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>3.2.8.RELEASE</spring.version>
+        <hibernate.version>4.0.1.Final</hibernate.version>
+        <xdoclet.dest>src/main/resources/hibernate</xdoclet.dest>
     </properties>
 
     <repositories>

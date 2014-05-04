@@ -16,7 +16,5 @@ public class WechatServiceTest extends AbstractTestng {
     @Test
     public void generateNewsMessageTest() {
         String helpMessage = wechatTemplate.getString("HelpMessage").replace("  ", "");
-        System.out.println(helpMessage);
-        System.out.println(helpMessage);
     }
 }

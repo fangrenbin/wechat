@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="name.frb.wechat.persist.model.WechatUserInfo"
+        table="wechat_user_info"
+        lazy="false"
+        dynamic-update="true"
+        dynamic-insert="true"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-WechatUserInfo.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="subscribe"
+            type="int"
+            update="true"
+            insert="true"
+            column="subscribe"
+        />
+
+        <property
+            name="openId"
+            type="string"
+            update="true"
+            insert="true"
+            column="openId"
+        />
+
+        <property
+            name="nickname"
+            type="string"
+            update="true"
+            insert="true"
+            column="nickname"
+        />
+
+        <property
+            name="sex"
+            type="int"
+            update="true"
+            insert="true"
+            column="sex"
+        />
+
+        <property
+            name="city"
+            type="string"
+            update="true"
+            insert="true"
+            column="city"
+        />
+
+        <property
+            name="country"
+            type="string"
+            update="true"
+            insert="true"
+            column="country"
+        />
+
+        <property
+            name="province"
+            type="string"
+            update="true"
+            insert="true"
+            column="province"
+        />
+
+        <property
+            name="language"
+            type="string"
+            update="true"
+            insert="true"
+            column="language"
+        />
+
+        <property
+            name="headImgUrl"
+            type="string"
+            update="true"
+            insert="true"
+            column="headImgUrl"
+        />
+
+        <property
+            name="subscribeTime"
+            type="string"
+            update="true"
+            insert="true"
+            column="subscribeTime"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-WechatUserInfo.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

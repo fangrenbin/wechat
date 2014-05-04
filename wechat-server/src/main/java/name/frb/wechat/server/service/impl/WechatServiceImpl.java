@@ -3,6 +3,7 @@ package name.frb.wechat.server.service.impl;
 import name.frb.configuration.xmlconfiguration.XmlConfiguration;
 
 
+import name.frb.wechat.persist.repository.WechatUserRepository;
 import name.frb.wechat.server.bean.ReceiveMessageType;
 import name.frb.wechat.server.bean.SendMessageType;
 import name.frb.wechat.server.dao.MessageDao;
@@ -13,16 +14,22 @@ import name.frb.wechat.server.service.WechatService;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.InputStream;
 import java.util.Date;
 
+@Service
 public class WechatServiceImpl implements WechatService {
     private TranslationService translationService;
 
     private XmlConfiguration wechatTemplate;
     private MessageDao messageDao;
     private NcenglishDao ncenglishDao;
+
+    @Resource
+    private WechatUserRepository wechatUserRepository;
 
     private final static String MSG_START = "<![CDATA[";
     private final static String MSG_END = "]]>";
@@ -180,5 +187,9 @@ public class WechatServiceImpl implements WechatService {
 
     public void setNcenglishDao(NcenglishDao ncenglishDao) {
         this.ncenglishDao = ncenglishDao;
+    }
+
+    public void setWechatUserRepository(WechatUserRepository wechatUserRepository) {
+        this.wechatUserRepository = wechatUserRepository;
     }
 }

@@ -12,6 +12,7 @@
        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
     <jpa:repositories base-package="name.frb.wechat.manager.repository"/>
+    <jpa:repositories base-package="name.frb.wechat.persist.repository"/>
     <bean id="transactionManager"
           class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>

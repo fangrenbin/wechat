@@ -14,7 +14,7 @@ public class SpringDataJpaTest extends AbstractTestng {
     @Resource
     private PersonController personController;
 
-    @Test
+//    @Test
     public void testCreate() {
         PersonDTO created = new PersonDTO("Fang", "Renbin");
         personController.createPerson(created);
