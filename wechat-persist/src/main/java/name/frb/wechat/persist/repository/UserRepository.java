@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Wechat user repository
  */
-public interface WechatUserRepository extends JpaRepository<WechatUserInfo, Long> {
+public interface UserRepository extends JpaRepository<WechatUserInfo, Long> {
 }

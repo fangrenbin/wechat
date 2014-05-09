@@ -2,7 +2,7 @@ package name.frb.wechat.manager.service;
 
 import junit.framework.Assert;
 import name.frb.wechat.AbstractTestng;
-import name.frb.wechat.server.model.NewsMessage;
+import name.frb.wechat.persist.model.NewsMessage;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

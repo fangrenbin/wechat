@@ -8,7 +8,7 @@ import name.frb.wechat.server.bean.ReceiveMessageType;
 import name.frb.wechat.server.bean.SendMessageType;
 import name.frb.wechat.server.dao.MessageDao;
 import name.frb.wechat.server.dao.NcenglishDao;
-import name.frb.wechat.server.model.TextMessage;
+import name.frb.wechat.persist.model.TextMessage;
 import name.frb.wechat.server.service.TranslationService;
 import name.frb.wechat.server.service.WechatService;
 import org.apache.commons.configuration.ConfigurationException;

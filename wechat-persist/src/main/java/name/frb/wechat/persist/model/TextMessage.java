@@ -1,17 +1,9 @@
-package name.frb.wechat.server.model;
+package name.frb.wechat.persist.model;
 
+/**
+ * @hibernate.class dynamic-insert="true" dynamic-update="true" table="text_message" lazy="false"
+ */
 public class TextMessage {
-
-//    create table text_message (
-//    id bigint not null auto_increment,
-//    toUserName varchar(255),
-//    fromUserName varchar(255),
-//    createTime varchar(255),
-//    msgType varchar(255),
-//    content varchar(255),
-//    msgId varchar(255),
-//    primary key (id));
-
     private long id;
     private String toUserName;
     private String fromUserName;
@@ -20,6 +12,10 @@ public class TextMessage {
     private String content;
     private String msgId;
 
+    /**
+     * @return
+     * @hibernate.id generator-class="native" type="long" unsaved-value="0"
+     */
     public long getId() {
         return id;
     }
@@ -28,6 +24,10 @@ public class TextMessage {
         this.id = id;
     }
 
+    /**
+     * @return
+     * @hibernate.property type="string"
+     */
     public String getToUserName() {
         return toUserName;
     }
@@ -36,6 +36,10 @@ public class TextMessage {
         this.toUserName = toUserName;
     }
 
+    /**
+     * @return
+     * @hibernate.property type="string"
+     */
     public String getFromUserName() {
         return fromUserName;
     }
@@ -44,6 +48,10 @@ public class TextMessage {
         this.fromUserName = fromUserName;
     }
 
+    /**
+     * @return
+     * @hibernate.property type="string"
+     */
     public String getCreateTime() {
         return createTime;
     }
@@ -52,6 +60,10 @@ public class TextMessage {
         this.createTime = createTime;
     }
 
+    /**
+     * @return
+     * @hibernate.property type="string"
+     */
     public String getMsgType() {
         return msgType;
     }
@@ -60,6 +72,10 @@ public class TextMessage {
         this.msgType = msgType;
     }
 
+    /**
+     * @return
+     * @hibernate.property type="string" length="500"
+     */
     public String getContent() {
         return content;
     }
@@ -68,6 +84,10 @@ public class TextMessage {
         this.content = content;
     }
 
+    /**
+     * @return
+     * @hibernate.property type="string"
+     */
     public String getMsgId() {
         return msgId;
     }

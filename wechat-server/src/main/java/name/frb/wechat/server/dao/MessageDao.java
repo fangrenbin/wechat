@@ -1,6 +1,6 @@
 package name.frb.wechat.server.dao;
 
-import name.frb.wechat.server.model.TextMessage;
+import name.frb.wechat.persist.model.TextMessage;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 

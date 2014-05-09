@@ -1,6 +1,7 @@
 package name.frb.wechat.manager.service;
 
-import name.frb.wechat.server.model.NewsMessage;
+
+import name.frb.wechat.persist.model.NewsMessage;
 
 import java.util.List;
 

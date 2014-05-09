@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="name.frb.wechat.persist.model.TextMessage"
+        table="text_message"
+        lazy="false"
+        dynamic-update="true"
+        dynamic-insert="true"
+    >
+
+        <id
+            name="id"
+            column="id"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-TextMessage.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="toUserName"
+            type="string"
+            update="true"
+            insert="true"
+            column="toUserName"
+        />
+
+        <property
+            name="fromUserName"
+            type="string"
+            update="true"
+            insert="true"
+            column="fromUserName"
+        />
+
+        <property
+            name="createTime"
+            type="string"
+            update="true"
+            insert="true"
+            column="createTime"
+        />
+
+        <property
+            name="msgType"
+            type="string"
+            update="true"
+            insert="true"
+            column="msgType"
+        />
+
+        <property
+            name="content"
+            type="string"
+            update="true"
+            insert="true"
+            column="content"
+            length="500"
+        />
+
+        <property
+            name="msgId"
+            type="string"
+            update="true"
+            insert="true"
+            column="msgId"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-TextMessage.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

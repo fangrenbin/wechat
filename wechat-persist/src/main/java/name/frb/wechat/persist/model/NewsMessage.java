@@ -1,4 +1,4 @@
-package name.frb.wechat.server.model;
+package name.frb.wechat.persist.model;
 
 public class NewsMessage {
 //    create table news_message (

@@ -15,7 +15,7 @@
     <packaging>war</packaging>
 
     <name>wechat</name>
-    <url>http://maven.apache.org</url>
+    <url>http://wechat.heroku.com</url>
 
     <properties>
 

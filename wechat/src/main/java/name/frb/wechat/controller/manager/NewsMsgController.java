@@ -1,8 +1,7 @@
 package name.frb.wechat.controller.manager;
 
-import name.frb.wechat.server.model.NewsMessage;
+import name.frb.wechat.persist.model.NewsMessage;
 import name.frb.wechat.manager.service.NewsMsgService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
