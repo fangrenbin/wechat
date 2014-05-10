@@ -1,6 +1,6 @@
 package name.frb.wechat.manager.dao;
 
-import name.frb.wechat.server.model.NewsMessage;
+import name.frb.wechat.persist.model.NewsMessage;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

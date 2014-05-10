@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by 斌 on 2014/4/29.
+ * Created by renbin.fang on 2014/4/29.
  */
 @Entity
 @Table(name = "persons")

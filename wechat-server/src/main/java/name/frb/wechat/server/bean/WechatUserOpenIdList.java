@@ -6,7 +6,7 @@ import java.util.List;
  * 微信用户列表OPENID
  * Created by renbin.fang on 2014/5/9.
  */
-public class WechatUserList {
+public class WechatUserOpenIdList {
     private Long total;
     private Long count;
     private List<String> openIdList;

@@ -14,13 +14,15 @@
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 
-    <bean id="newsMsgService" class="name.frb.wechat.manager.service.impl.NewsMsgServiceImpl">
-        <property name="newsMsgDao" ref="newsMsgDao"/>
-    </bean>
+    <!--<bean id="newsMsgService" class="name.frb.wechat.manager.service.impl.NewsMsgServiceImpl">-->
+    <!--<property name="newsMsgDao" ref="newsMsgDao"/>-->
+    <!--</bean>-->
 
-    <bean id="messageService" class="name.frb.wechat.manager.service.impl.MessageServiceImpl">
-        <property name="messageDao" ref="messageDao"/>
-    </bean>
+    <!--<bean id="messageService" class="name.frb.wechat.manager.service.impl.MessageServiceImpl">-->
+        <!--<property name="messageDao" ref="messageDao"/>-->
+    <!--</bean>-->
 
     <bean id="personService" class="name.frb.wechat.manager.service.impl.RepositoryPersonService"/>
+
+    <bean id="wechatUserManager" class="name.frb.wechat.manager.service.impl.WechatUserManagerImpl"/>
 </beans>
