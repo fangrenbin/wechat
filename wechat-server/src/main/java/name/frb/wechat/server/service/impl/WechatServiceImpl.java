@@ -28,9 +28,6 @@ public class WechatServiceImpl implements WechatService {
     private MessageDao messageDao;
     private NcenglishDao ncenglishDao;
 
-    @Resource
-    private WechatUserRepository wechatUserRepository;
-
     private final static String MSG_START = "<![CDATA[";
     private final static String MSG_END = "]]>";
     private final static String TAB = "  ";
@@ -189,7 +186,4 @@ public class WechatServiceImpl implements WechatService {
         this.ncenglishDao = ncenglishDao;
     }
 
-    public void setWechatUserRepository(WechatUserRepository wechatUserRepository) {
-        this.wechatUserRepository = wechatUserRepository;
-    }
 }

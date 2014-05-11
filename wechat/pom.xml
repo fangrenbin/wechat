@@ -18,7 +18,6 @@
     <url>http://wechat.heroku.com</url>
 
     <properties>
-
         <spring.security.version>3.2.3.RELEASE</spring.security.version>
     </properties>
 
@@ -93,26 +92,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
-        <resources>
-            <resource>
-                <filtering>true</filtering>
-                <directory>src/test/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                </includes>
-                <excludes>
-                    <exclude>**/*local.properties</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
 
         <finalName>${project.artifactId}-${project.version}</finalName>
     </build>

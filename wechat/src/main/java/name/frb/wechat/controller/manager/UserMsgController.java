@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/message")
 public class UserMsgController {
-    @Resource(name = "messageService")
+//    @Resource(name = "messageService")
     private MessageService messageService;
 
     /**

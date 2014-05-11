@@ -1,23 +1,38 @@
 package name.frb.wechat.persist.model;
 
+import javax.persistence.*;
+
 /**
  * @hibernate.class dynamic-insert="true" dynamic-update="true" table="wechat_user_info" lazy="false"
  */
+@Entity
+@Table(name = "wechat_user_info")
 public class WechatUserInfo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "subscribe", nullable = false)
     private Integer subscribe;
+    @Column(name = "openId", nullable = false)
     private String openId;
+    @Column(name = "nickname", nullable = false)
     private String nickname;
+    @Column(name = "sex", nullable = false)
     private Integer sex;
+    @Column(name = "city", nullable = false)
     private String city;
+    @Column(name = "country", nullable = false)
     private String country;
+    @Column(name = "province", nullable = false)
     private String province;
+    @Column(name = "language", nullable = false)
     private String language;
+    @Column(name = "headImgUrl", nullable = false)
     private String headImgUrl;
-    private String subscribeTime;
+    @Column(name = "subscribeTime", nullable = false)
+    private Long subscribeTime;
 
     /**
-     * @return
      * @hibernate.id generator-class="native" type="long" unsaved-value="0"
      */
     public Long getId() {
@@ -29,7 +44,6 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="int"
      */
     public Integer getSubscribe() {
@@ -41,7 +55,6 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="string"
      */
     public String getOpenId() {
@@ -53,7 +66,6 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="string"
      */
     public String getNickname() {
@@ -65,7 +77,6 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="int"
      */
     public Integer getSex() {
@@ -78,7 +89,6 @@ public class WechatUserInfo {
 
 
     /**
-     * @return
      * @hibernate.property type="string"
      */
     public String getCity() {
@@ -90,7 +100,6 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="string"
      */
     public String getCountry() {
@@ -102,7 +111,6 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="string"
      */
     public String getProvince() {
@@ -114,7 +122,6 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="string"
      */
     public String getLanguage() {
@@ -126,7 +133,6 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="string"
      */
     public String getHeadImgUrl() {
@@ -138,16 +144,16 @@ public class WechatUserInfo {
     }
 
     /**
-     * @return
      * @hibernate.property type="string"
      */
-    public String getSubscribeTime() {
+    public Long getSubscribeTime() {
         return subscribeTime;
     }
 
-    public void setSubscribeTime(String subscribeTime) {
+    public void setSubscribeTime(Long subscribeTime) {
         this.subscribeTime = subscribeTime;
     }
+
 
     @Override
     public String toString() {

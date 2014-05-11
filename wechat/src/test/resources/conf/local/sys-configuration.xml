@@ -2,8 +2,14 @@
 <Root>
     <Database>
         <DirverClass>com.mysql.jdbc.Driver</DirverClass>
-        <JdbcUrl>jdbc:mysql://localhost:3306/wechat?characterEncoding=UTF8</JdbcUrl>
-        <User>root</User>
-        <Password>123456</Password>
+        <JdbcUrl>jdbc:mysql://db4free.net:3306/klxdb?characterEncoding=UTF8</JdbcUrl>
+        <User>klxuser</User>
+        <Password>klxpassword</Password>
     </Database>
+    <!--<Database>-->
+        <!--<DirverClass>com.mysql.jdbc.Driver</DirverClass>-->
+        <!--<JdbcUrl>jdbc:mysql://localhost:3306/wechat?characterEncoding=UTF8</JdbcUrl>-->
+        <!--<User>root</User>-->
+        <!--<Password>123456</Password>-->
+    <!--</Database>-->
 </Root>

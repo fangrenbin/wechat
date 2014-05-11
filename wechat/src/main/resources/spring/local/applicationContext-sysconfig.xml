@@ -6,8 +6,7 @@
 
     <bean id="sysconfig" class="name.frb.configuration.xmlconfiguration.XmlConfiguration" init-method="init">
         <property name="rescourceLoader" ref="resourceLoader"/>
-        <constructor-arg value="classpath:conf/local/sys-configuration.xml;
-                                classpath*:conf/common/sys-configuration.xml"/>
+        <constructor-arg value="classpath:conf/local/sys-configuration.xml"/>
     </bean>
 
     <bean class="name.frb.configuration.placeholder.XmlPropertyPlaceholderConfigurer">

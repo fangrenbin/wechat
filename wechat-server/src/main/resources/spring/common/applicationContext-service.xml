@@ -24,4 +24,6 @@
         <property name="messageDao" ref="messageDao"/>
         <property name="ncenglishDao" ref="ncenglishDao"/>
     </bean>
+
+    <bean id="wechatUserService" class="name.frb.wechat.server.service.impl.WechatUserServiceImpl"/>
 </beans>

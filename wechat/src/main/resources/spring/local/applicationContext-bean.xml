@@ -3,24 +3,30 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userController" class="name.frb.wechat.controller.manager.UserController" scope="prototype">
-        <property name="userService" ref="userService"/>
-    </bean>
-
-    <bean id="messageController" class="name.frb.wechat.controller.manager.UserMsgController" scope="prototype">
-        <property name="messageService" ref="messageService"/>
-    </bean>
 
     <bean id="wechatController" class="name.frb.wechat.controller.server.WechatController" scope="prototype">
         <property name="wechatService" ref="wechatService"/>
     </bean>
 
-    <bean id="newsMsgController" class="name.frb.wechat.controller.manager.NewsMsgController" scope="prototype">
-        <property name="newsMsgService" ref="newsMsgService"/>
+    <bean id="userController" class="name.frb.wechat.controller.manager.UserController" scope="prototype">
+        <property name="userService" ref="userService"/>
     </bean>
-    
+
+    <!--<bean id="messageController" class="name.frb.wechat.controller.manager.UserMsgController" scope="prototype">-->
+        <!--<property name="messageService" ref="messageService"/>-->
+    <!--</bean>-->
+
+
+    <!--<bean id="newsMsgController" class="name.frb.wechat.controller.manager.NewsMsgController" scope="prototype">-->
+        <!--<property name="newsMsgService" ref="newsMsgService"/>-->
+    <!--</bean>-->
+
     <bean id="personController" class="name.frb.wechat.controller.manager.PersonController" scope="prototype">
         <property name="personService" ref="personService"/>
+    </bean>
+
+    <bean id="wechatUserController" class="name.frb.wechat.controller.manager.WechatUserController" scope="prototype">
+        <property name="wechatUserManager" ref="wechatUserManager"/>
     </bean>
 
     <!-- Spring MVC ResponseBody encoding converter -->

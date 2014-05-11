@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- wechat reply template -->
 <Root>
     <WelcomeMessage>
-        Hello there, Welcome to happy learning english. Here, I'm going to help you pick some english up. Hope you like it.
+        Hello there, Welcome to happy learning english. Here, I'm going to help you pick some english up. Hope you like
+        it.
     </WelcomeMessage>
     <GoodByeMessage>
         Bye bye!

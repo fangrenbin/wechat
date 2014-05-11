@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/newsMsg")
 public class NewsMsgController {
-    @Resource(name = "newsMsgService")
+//    @Resource(name = "newsMsgService")
     private NewsMsgService newsMsgService;
 
     @RequestMapping(value = "/newsMsgList", method = RequestMethod.GET)

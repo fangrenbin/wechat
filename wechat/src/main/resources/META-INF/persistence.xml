@@ -3,6 +3,7 @@
     <persistence-unit name="SimplePU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>name.frb.wechat.manager.model.Person</class>
+        <class>name.frb.wechat.persist.model.WechatUserInfo</class>
         <properties>
             <property name="hibernate.connection.driver_class"
                       value="com.mysql.jdbc.Driver"/>

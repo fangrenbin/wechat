@@ -24,6 +24,7 @@ target/
 *.orig
 
 *.log
+*.log.*
 out
 test-output
 atlassian-ide-plugin.xml

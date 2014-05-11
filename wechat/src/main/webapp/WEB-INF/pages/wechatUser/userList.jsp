@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>微信管理平台</title>
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/style.css" rel="stylesheet">
+    <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../resources/css/style.css" rel="stylesheet">
 </head>
 <body>
 <div class="navbar">
@@ -18,7 +18,7 @@
             <li><a href="#">Contact</a></li>
         </ul>
         <p class="navbar-text pull-right">
-            <img class="user-icon HW" src="resources/img/user.png">
+            <img class="user-icon HW" src="../resources/img/user.png">
             <a href="#">fangrenbin</a>
             <a href="Login.html" class="out">Logout</a>
         </p>
@@ -48,40 +48,41 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>Student-ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Grade</th>
+                        <%--<th>toUserName</th>--%>
+                        <th>#</th>
+                        <th>id</th>
+                        <th>nickname</th>
+                        <th>sex</th>
+                        <th>city</th>
+                        <th>country</th>
+                        <th>province</th>
+                        <th>subscribeTime</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>003</td>
-                        <td>Rabindranath</td>
-                        <td>Sen</td>
-                        <td>A+</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Rabindranath</td>
-                        <td>Sen</td>
-                        <td>A+</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Rabindranath</td>
-                        <td>Sen</td>
-                        <td>A+</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Rabindranath</td>
-                        <td>Sen</td>
-                        <td>A+</td>
-                    </tr>
+                    <c:forEach items="${userList}"  var="user">
+                        <tr>
+                                <%--<td>${message.toUserName}</td>--%>
+                            <td></td>
+                            <td>${user.id}</td>
+                            <td>${user.nickname}</td>
+                            <td>${user.sex}</td>
+                            <td>${user.city}</td>
+                            <td>${user.country}</td>
+                            <td>${user.province}</td>
+                            <td>${user.subscribeTime}</td>
+                            <td>
+                                <a href="<%=request.getContextPath() %>/user/updateUserPage?id=${user.id}">reply</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
+            <ul class="pager">
+                <li class="previous"><a href="#">&larr; Older</a></li>
+                <li class="next"><a href="#">Newer &rarr;</a></li>
+            </ul>
         </div>
     </div>
 </div>
