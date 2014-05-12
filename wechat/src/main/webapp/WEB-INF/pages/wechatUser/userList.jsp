@@ -11,10 +11,9 @@
 <body>
 <div class="navbar">
     <div class="navbar-inner">
-        <a class="brand" href="#">Title</a>
         <ul class="nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="<%=request.getContextPath() %>/">Home</a></li>
+            <li><a href="<%=request.getContextPath() %>/welcome">Welcome</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
         <p class="navbar-text pull-right">
@@ -50,21 +49,20 @@
                     <tr>
                         <%--<th>toUserName</th>--%>
                         <th>#</th>
-                        <th>id</th>
                         <th>nickname</th>
                         <th>sex</th>
                         <th>city</th>
                         <th>country</th>
                         <th>province</th>
                         <th>subscribeTime</th>
+                        <th>Operation</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${userList}"  var="user">
+                    <c:forEach items="${userList}"  var="user" varStatus="st">
                         <tr>
                                 <%--<td>${message.toUserName}</td>--%>
-                            <td></td>
-                            <td>${user.id}</td>
+                            <td>${st.index+1}</td>
                             <td>${user.nickname}</td>
                             <td>${user.sex}</td>
                             <td>${user.city}</td>

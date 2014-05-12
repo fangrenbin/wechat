@@ -11,10 +11,9 @@
 <body>
 <div class="navbar">
     <div class="navbar-inner">
-        <a class="brand" href="#">Title</a>
         <ul class="nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="<%=request.getContextPath() %>/">Home</a></li>
+            <li><a href="<%=request.getContextPath() %>/welcome">Welcome</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
         <p class="navbar-text pull-right">
@@ -46,40 +45,10 @@
                     </div>
                 </form>
                 <table class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th>Student-ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Grade</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>003</td>
-                        <td>Rabindranath</td>
-                        <td>Sen</td>
-                        <td>A+</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Rabindranath</td>
-                        <td>Sen</td>
-                        <td>A+</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Rabindranath</td>
-                        <td>Sen</td>
-                        <td>A+</td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Rabindranath</td>
-                        <td>Sen</td>
-                        <td>A+</td>
-                    </tr>
-                    </tbody>
+                    <div class="bs-callout bs-callout-danger">
+                        <h4>Don't mix with other components</h4>
+                        <p>Icon classes cannot be directly combined with other components. They should not be used along with other classes on the same element. Instead, add a nested <code>&lt;span&gt;</code> and apply the icon classes to the <code>&lt;span&gt;</code>.</p>
+                    </div>
                 </table>
             </div>
         </div>
