@@ -14,6 +14,7 @@ public class WechatUtils {
     private final static String APP_ID = "wxd30e31bfd8c207ee";
     private final static String APP_SECRET = "d0f9c44269c0282a1a7337efea1950a1";
 
+    //TODO 处理解析错误的情况，比如access过期，返回的其它字符串
     /**
      * get access token
      *

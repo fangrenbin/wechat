@@ -34,6 +34,7 @@ public class TranslationServiceImpl implements TranslationService {
         System.out.println(result);
     }
 
+    //TODO 加参数，就可以多语言转换了
     @Override
     public String translatEnToZh(String words) {
         String requstUrl = REQUEST_URL.replace("${API_KEY}", API_KEY).replace("${WORDS}", words).replace("${FROM}", EN).replace("${TO}", ZH);
