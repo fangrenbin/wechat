@@ -1,6 +1,8 @@
 
     drop table if exists text_message;
 
+    drop table if exists wechat_user_group;
+
     drop table if exists wechat_user_info;
 
     create table text_message (
@@ -11,6 +13,14 @@
         msgType varchar(255),
         content longtext,
         msgId varchar(255),
+        primary key (id)
+    );
+
+    create table wechat_user_group (
+        id bigint not null auto_increment,
+        wechatId varchar(255),
+        name varchar(255),
+        count integer,
         primary key (id)
     );
 

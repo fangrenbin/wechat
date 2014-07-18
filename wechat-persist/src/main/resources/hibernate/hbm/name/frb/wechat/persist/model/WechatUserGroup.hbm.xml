@@ -2,7 +2,7 @@
 
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
-    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping
 >
@@ -14,3 +14,51 @@
         dynamic-insert="true"
     >
 
+        <id
+            name="id"
+            column="id"
+            type="long"
+            unsaved-value="0"
+        >
+            <generator class="native">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-WechatUserGroup.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="wechatId"
+            type="string"
+            update="true"
+            insert="true"
+            column="wechatId"
+        />
+
+        <property
+            name="name"
+            type="string"
+            update="true"
+            insert="true"
+            column="name"
+        />
+
+        <property
+            name="count"
+            type="int"
+            update="true"
+            insert="true"
+            column="count"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-WechatUserGroup.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
